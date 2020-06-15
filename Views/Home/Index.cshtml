@@ -1,0 +1,74 @@
+﻿
+@using PickAndPlay.Models;
+
+@{
+    ViewData["Title"] = "Accueil";
+}
+
+@{IEnumerable<Jeu> nouveautesJeux = ViewData["NouveautesJeux"] as IEnumerable<Jeu>;
+
+}
+
+<div class="row">
+    <div class="col p-2">
+        <h5 class="text-center text-primary m-4 display-5">
+            Nouveautés
+        </h5>
+    </div>
+</div>
+<div class="row">
+    @foreach (Jeu jeu in nouveautesJeux)
+    {
+        <div class="col-md m-3 card">
+            <div class="p-2">
+                @if (jeu.ImagePrincipale != null)
+                {
+                    <img class="rounded" src="./images/jeux/@jeu.ImagePrincipale.NomFile" alt="..." />
+                }
+            </div>
+            <div class="card m-2 p-2">
+                <a href="jeux.html">
+                    <h5 class="mt-0">@jeu.Nom</h5>
+                </a>
+
+                Cras purus odio, vestibulum in vulputate at, tempus viverra
+                turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+
+
+
+
+<!--<div class="col-md m-3 card">
+        <div class="p-2">
+            <img class="rounded" src="./images/mario-small.png" alt="..." />
+        </div>
+        <div class="card m-2 p-2">
+            <a href="jeux.html">
+                <h5 class="mt-0">Champignon Grognon</h5>
+            </a>
+
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+            scelerisque ante sollicitudin.
+        </div>
+    </div>
+
+    <div class="col-md m-3 card">
+        <div class="p-2">
+            <img class="rounded" src="./images/pacman-small.png" alt="..." />
+        </div>
+        <div class="card m-2 p-2">
+            <a href="jeux.html">
+                <h5 class="mt-0">Pacman Gourmand</h5>
+            </a>
+
+            Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
+            congue felis in faucibus.
+        </div>
+</div>-->
