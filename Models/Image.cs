@@ -17,6 +17,11 @@ namespace PickAndPlay.Models
         public int Id { get; set; }
         [StringLength(50)]
         public string NomFile { get; set; }
+
+
+        [StringLength(50)]
+        public string Alt { get; set; }
+
         public int? Largeur { get; set; }
         public int? Hauteur { get; set; }
 

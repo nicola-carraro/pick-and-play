@@ -23,16 +23,18 @@
             <div class="p-2">
                 @if (jeu.ImagePrincipale != null)
                 {
-                    <img class="rounded" src="./images/jeux/@jeu.ImagePrincipale.NomFile" alt="..." />
+                    <img class="rounded" src="./images/jeux/@jeu.ImagePrincipale.NomFile" alt="@jeu.ImagePrincipale.Alt" />
                 }
             </div>
             <div class="card m-2 p-2">
-                <a href="jeux.html">
+                <a href="/Home/Jeu?id=@jeu.Id">
                     <h5 class="mt-0">@jeu.Nom</h5>
                 </a>
 
-                Cras purus odio, vestibulum in vulputate at, tempus viverra
-                turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+                @if (jeu.Description != null)
+                {
+                    @jeu.Description;
+                }
             </div>
         </div>
     }

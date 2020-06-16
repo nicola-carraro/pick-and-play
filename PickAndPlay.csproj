@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200615121234_Help.cs" />
+    <Compile Remove="Migrations\20200615121234_Help.Designer.cs" />
+    <Compile Remove="Migrations\20200615121309_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200615121309_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200615150516_UrlEditeur.cs" />
+    <Compile Remove="Migrations\20200615150516_UrlEditeur.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

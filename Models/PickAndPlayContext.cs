@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -14,26 +15,28 @@ namespace PickAndPlay.Models
             : base(options)
         {
         }
-        public virtual DbSet<Actualite> Actualite { get; set; }
+        public virtual DbSet<Actualite> Actualites { get; set; }
         public virtual DbSet<ActualiteImage> ActualiteImage { get; set; }
-        public virtual DbSet<Adresse> Adresse { get; set; }
-        public virtual DbSet<ConsoleDeJeu> ConsoleDeJeu { get; set; }
+        public virtual DbSet<Adresse> Adresses { get; set; }
+        public virtual DbSet<ConsoleDeJeu> ConsolesDeJeu { get; set; }
         public virtual DbSet<ConsoleJeu> ConsoleJeu { get; set; }
         public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<Jeu> Jeu { get; set; }
         public virtual DbSet<JeuConsoleDeJeu> JeuConsoleDeJeu { get; set; }
         public virtual DbSet<JeuImage> JeuImage { get; set; }
-        public virtual DbSet<Location> Location { get; set; }
-        public virtual DbSet<Magasin> Magasin { get; set; }
+        public virtual DbSet<Location> Locations { get; set; }
+        public virtual DbSet<Magasin> Magasins { get; set; }
         public virtual DbSet<MagasinImage> MagasinImage { get; set; }
-        public virtual DbSet<NoteJeu> NoteJeu { get; set; }
+        public virtual DbSet<NoteJeu> NotesJeus { get; set; }
+
+        public virtual DbSet<Editeur> Editeur { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseSqlServer("Server=(LocalDb)\\MSSQLLocalDB;Database=PickAndPlay;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DI01; Database=PickAndPlay; User=sa; Password=Anassagora85;");
             }
         }
 
@@ -50,6 +53,8 @@ namespace PickAndPlay.Models
 
                 entity.Property(e => e.NumeroDeRue).IsFixedLength();
             });
+
+         
 
             modelBuilder.Entity<ConsoleJeu>(entity =>
             {

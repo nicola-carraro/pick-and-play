@@ -17,12 +17,15 @@ namespace PickAndPlay.Models
         public int Id { get; set; }
         [StringLength(50)]
         public string Nom { get; set; }
-        [StringLength(50)]
+ 
         public string Description { get; set; }
         [Column(TypeName = "date")]
         public DateTime? DateDeSortie { get; set; }
+
         [StringLength(50)]
         public string Editeur { get; set; }
+
+     
         [StringLength(50)]
         public string LinkEditeur { get; set; }
         [Column("PEGI")]
@@ -44,5 +47,9 @@ namespace PickAndPlay.Models
 
         [NotMapped()]
         public virtual Image ImagePrincipale { get; set; }
+
+
+        [NotMapped()]
+        public virtual ICollection<Image> Images{ get; set; }
     }
 }

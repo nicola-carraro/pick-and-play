@@ -25,7 +25,7 @@ namespace PickAndPlay.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Jeu>jeux = _context.Jeu.Include(j => j.JeuImage).ThenInclude(ji => ji.IdImageNavigation);
+            IEnumerable<Jeu> jeux = _context.Jeu.Include(j => j.JeuImage).ThenInclude(ji => ji.IdImageNavigation);
             
             foreach (Jeu jeu in jeux)
             {
@@ -41,6 +41,37 @@ namespace PickAndPlay.Controllers
 
             ViewData["NouveautesJeux"] = jeux;
 
+
+            return View();
+        }
+
+
+        public ActionResult Jeu(int? id)
+        {
+            var query = (from j in _context.Jeu
+                         where j.Id == id
+                         select j).Include(j => j.JeuImage)
+                                    .ThenInclude(ji => ji.IdImageNavigation);
+
+            Jeu jeu = query.FirstOrDefault();
+
+            Image image = null;
+
+            if (jeu == null)
+            {
+                return NotFound();
+            }
+
+            foreach (JeuImage item in jeu.JeuImage)
+            {
+                if (item.IdImageNavigation != null && item.IdImageNavigation.Largeur >= 1000)
+                {
+                    image = item.IdImageNavigation;
+                }
+            }
+
+            ViewData["Jeu"] = jeu;
+            ViewData["Image"] = image;
 
             return View();
         }

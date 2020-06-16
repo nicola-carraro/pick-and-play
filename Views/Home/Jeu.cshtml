@@ -1,0 +1,107 @@
+﻿@using PickAndPlay;
+@using PickAndPlay.Models;
+
+@{
+    ViewData["Title"] = "Jeu";
+}
+
+@{
+    Jeu jeu = ViewData["Jeu"] as Jeu;
+    Image imageJeu = ViewData["Image"] as Image;
+}
+
+@section Css {
+    <link href="~/bootstrap/css/star-rating.css"
+          media="all"
+          rel="stylesheet"
+          type="text/css" />
+    <link href="~/bootstrap/css/star-rating-theme.css"
+          media="all"
+          rel="stylesheet"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            @if (@imageJeu != null)
+            {
+                <img class="img-fluid p-5"
+                     src="/images/jeux/@imageJeu.NomFile"
+                     alt="@imageJeu.Alt" />
+            }
+
+        </div>
+    </div>
+    <div class="col-md">
+        <section class="m-5">
+            <h4 class="display-5 m-3">
+                @jeu.Nom
+                <a href="https://pegi.info/">
+                    <img class="ml-3" src="/images/pegi7-small.png" alt="pegi 7" />
+                </a>
+            </h4>
+            <p>
+                <strong>Éditeur : </strong><a href="@jeu.LinkEditeur">
+                    @Utilitaires.Display(jeu.Editeur, "Inconnu")
+                </a>
+            </p>
+            <p>
+                <strong>Plateformes : </strong>
+                <a href="https://www.playstation.com/fr-fr/ps5/"> PS-5</a>
+            </p>
+            <p>
+                <strong>Date de sortie : </strong>
+                <a href="#">
+
+
+                    @if (jeu.DateDeSortie == null)
+                    {
+                        <span>Inconnu</span>
+                    }
+                    else
+                    {
+                        @jeu.DateDeSortie.GetValueOrDefault().Year
+                    }
+                </a>
+            </p>
+            <!--<p><strong>Genre : </strong> <a href="#"> Action</a></p>-->
+            <p>
+                <strong>Tarif : </strong>
+                <a href="#">
+                    @Utilitaires.Display(jeu.PrixLocation, "Inconnu")
+                    @if (jeu.PrixLocation.HasValue)
+                    {<span>/ semaine</span>}
+
+                </a>
+            </p>
+         
+            <p>
+                <strong>Classification :</strong>
+                <a href="https://pegi.info/">Plus de 7 ans</a>
+            </p>
+
+            <form class="form-inline" action="#" method="post">
+                <a class="text-success" href="#"> Disponible à la location</a>
+                <input class="ml-4 btn btn-success"
+                       type="submit"
+                       value="Réserver" />
+            </form>
+
+            <form class="mt-5">
+                <div class="form-group row">
+                    <label for="note" class="col-sm-3 col-form-label"><strong>Note : </strong></label>
+                    <span id="note" class="mt-2">
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </span>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>

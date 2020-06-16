@@ -7,10 +7,11 @@
     <title>Pick & Play - Accueil</title>
     <meta name="description" content="Location de jeux vidéo" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="./images/pick-and-play.png" />
+    <link rel="icon" href="/images/pick-and-play.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="./bootstrap/css/custom.css">
+    <link rel="stylesheet" href="~/bootstrap/css/custom.css">
+    @RenderSection("Css", required: false)
 </head>
 
 <body class="m-4">
@@ -22,7 +23,7 @@
                     <ul class="row nav">
                         <li class="col nav-item">
                             <a class="nav-link active" href="#">
-                                <img class="img-fluid" src="./images/logo.png"
+                                <img class="img-fluid" src="/images/logo.png"
                                      alt="Pick & Play icon" />
                             </a>
                         </li>
