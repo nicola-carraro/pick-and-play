@@ -138,6 +138,26 @@ namespace PickAndPlay.Migrations
                     b.ToTable("ConsoleJeu");
                 });
 
+            modelBuilder.Entity("PickAndPlay.Models.Editeur", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("Nom")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Editeur");
+                });
+
             modelBuilder.Entity("PickAndPlay.Models.Image", b =>
                 {
                     b.Property<int>("Id")
@@ -197,10 +217,10 @@ namespace PickAndPlay.Migrations
                         .HasColumnType("tinyint");
 
                     b.Property<decimal?>("PrixAchat")
-                        .HasColumnType("decimal(18, 0)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<decimal?>("PrixLocation")
-                        .HasColumnType("decimal(18, 0)");
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 

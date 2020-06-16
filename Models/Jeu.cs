@@ -31,9 +31,9 @@ namespace PickAndPlay.Models
         [Column("PEGI")]
         public byte? Pegi { get; set; }
         public bool? Disponible { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal? PrixLocation { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal? PrixAchat { get; set; }
 
         [InverseProperty("IdNavigation")]
