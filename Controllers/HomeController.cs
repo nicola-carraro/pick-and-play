@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -55,24 +56,53 @@ namespace PickAndPlay.Controllers
 
             Jeu jeu = query.FirstOrDefault();
 
-            Image image = null;
+            Image image = (from ji in jeu.JeuImage 
+                        where ji.IdImageNavigation.Largeur >= 1000 
+                        select ji.IdImageNavigation).FirstOrDefault();
+
+            jeu.Notes = _context.NotesJeus.Where(n => n.IdJeu == jeu.Id).ToList();
+
+            foreach (var note in jeu.Notes)
+            {
+                Console.WriteLine(note.Note);
+            }
 
             if (jeu == null)
             {
                 return NotFound();
             }
 
-            foreach (JeuImage item in jeu.JeuImage)
-            {
-                if (item.IdImageNavigation != null && item.IdImageNavigation.Largeur >= 1000)
-                {
-                    image = item.IdImageNavigation;
-                }
-            }
+          
 
             ViewData["Jeu"] = jeu;
             ViewData["Image"] = image;
 
+            return View();
+        }
+
+
+        public ActionResult Rechercher(string query)
+        {
+
+            if (string.IsNullOrWhiteSpace(query))
+            {
+
+                HttpContext.Response.Redirect("/");
+            }
+            List<Jeu> jeux= _context.Jeux.Where(j => j.Nom.Contains(query)).ToList();
+
+            Console.WriteLine(jeux);
+            foreach (var jeu in jeux)
+            {
+                Console.WriteLine(jeu.Nom);
+            }
+
+            /*
+            List<object> resultats = new List<object>();
+            resultats.AddRange(jeux);*/
+
+            ViewData["resultat"] = jeux;
+            ViewData["query"] = query;
             return View();
         }
 
@@ -86,5 +116,6 @@ namespace PickAndPlay.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }

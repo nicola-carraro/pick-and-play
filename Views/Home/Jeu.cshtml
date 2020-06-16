@@ -33,15 +33,16 @@
                      alt="@imageJeu.Alt" />
             }
 
+
         </div>
     </div>
     <div class="col-md">
         <section class="m-5">
             <h4 class="display-5 m-3">
                 @jeu.Nom
-                <a href="https://pegi.info/">
-                    <img class="ml-3" src="/images/pegi7-small.png" alt="pegi 7" />
-                </a>
+
+
+
             </h4>
             <p>
                 <strong>Éditeur : </strong><a href="@jeu.LinkEditeur">
@@ -77,31 +78,86 @@
 
                 </a>
             </p>
-         
+
             <p>
                 <strong>Classification :</strong>
-                <a href="https://pegi.info/">Plus de 7 ans</a>
-            </p>
 
-            <form class="form-inline" action="#" method="post">
-                <a class="text-success" href="#"> Disponible à la location</a>
-                <input class="ml-4 btn btn-success"
-                       type="submit"
-                       value="Réserver" />
-            </form>
+                @if (jeu.Pegi.HasValue)
+                {
+                <p>
+                    <a href="https://pegi.info/">
+                        @{
+                            string src = "/images/pegi/pegi" + jeu.Pegi + ".png";
+                            string alt = "Pegi " + jeu.Pegi;
+                        }
+                        <img class="ml-3 w-25" src=@src alt=@alt />
+                    </a>
 
-            <form class="mt-5">
-                <div class="form-group row">
-                    <label for="note" class="col-sm-3 col-form-label"><strong>Note : </strong></label>
-                    <span id="note" class="mt-2">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </span>
-                </div>
-            </form>
-        </section>
+
+                </p>
+
+            }
+
+                </p>
+
+                <form class="form-inline" action="#" method="post">
+
+                    @if (jeu.Disponible.GetValueOrDefault())
+                    {
+
+                        <a class="text-success" href="#"> Disponible à la location</a>
+                        <input class="ml-4 btn btn-success"
+                               type="submit"
+                               value="Réserver" />
+                    }
+                    else
+                    {
+                        <a class="text-danger" href="#">Non Disponible</a>
+                        <input class="ml-4 btn btn-danger"
+                               type="submit"
+                               value="Non Disponible"
+                               disabled />
+                    }
+
+
+
+
+                </form>
+
+                <form class="mt-5">
+                    <div class="form-group row">
+                        <label for="note" class="col-sm-3 col-form-label"><strong>Note : </strong></label>
+                        <span id="note" class="mt-2">
+
+                            @if (!jeu.NoteMoyenne().HasValue)
+                            {
+                                <a href="#">Non noté</a>
+                            }
+
+                            else
+                            {
+                                @for (int i = 0; i < 5; i++)
+                                {
+
+
+                                    string klass = "fa fa-star";
+
+                                    if ((jeu.NoteMoyenne() - i) >= 0.5m)
+                                    {
+                                        klass += " checked";
+                                    }
+
+                                    <span class="@klass"></span>
+                                }
+
+                            }
+
+
+
+
+                        </span>
+                    </div>
+                </form>
+            </section>
+        </div>
     </div>
-</div>

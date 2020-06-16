@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace PickAndPlay.Models
 {
@@ -18,7 +19,7 @@ namespace PickAndPlay.Models
         public int Id { get; set; }
         [StringLength(50)]
         public string Nom { get; set; }
- 
+
         public string Description { get; set; }
         [Column(TypeName = "date")]
         public DateTime? DateDeSortie { get; set; }
@@ -26,7 +27,7 @@ namespace PickAndPlay.Models
         [StringLength(50)]
         public string Editeur { get; set; }
 
-     
+
         [StringLength(50)]
         public string LinkEditeur { get; set; }
         [Column("PEGI")]
@@ -51,6 +52,30 @@ namespace PickAndPlay.Models
 
 
         [NotMapped()]
-        public virtual ICollection<Image> Images{ get; set; }
+        public virtual ICollection<Image> Images { get; set; }
+
+        [NotMapped()]
+        public virtual List<NoteJeu> Notes { get; set; }
+
+
+        public decimal? NoteMoyenne()
+        {
+
+            if (Notes.Count == 0)
+
+            {
+                return null;
+            }
+
+            decimal resultat = 0;
+
+            foreach (var note in Notes)
+            {
+                resultat += note.Note;
+            };
+
+            return resultat / Notes.Count;
+        }
+
     }
 }

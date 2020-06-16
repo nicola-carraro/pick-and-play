@@ -10,7 +10,7 @@ namespace PickAndPlay.Models
         [Key]
         public int Id { get; set; }
         public int IdJeu { get; set; }
-        [Column(TypeName = "decimal(18, 0)")]
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal Note { get; set; }
 
         [ForeignKey(nameof(Id))]
