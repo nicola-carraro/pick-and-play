@@ -5,8 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PickAndPlay.Models
 {
+
+    [Table("Image")]
     public partial class Image
     {
+       
         public Image()
         {
             JeuImage = new HashSet<JeuImage>();

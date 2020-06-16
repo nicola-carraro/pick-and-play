@@ -25,7 +25,7 @@ namespace PickAndPlay.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Jeu> jeux = _context.Jeu.Include(j => j.JeuImage).ThenInclude(ji => ji.IdImageNavigation);
+            IEnumerable<Jeu> jeux = _context.Jeux.Include(j => j.JeuImage).ThenInclude(ji => ji.IdImageNavigation);
             
             foreach (Jeu jeu in jeux)
             {
@@ -48,7 +48,7 @@ namespace PickAndPlay.Controllers
 
         public ActionResult Jeu(int? id)
         {
-            var query = (from j in _context.Jeu
+            var query = (from j in _context.Jeux
                          where j.Id == id
                          select j).Include(j => j.JeuImage)
                                     .ThenInclude(ji => ji.IdImageNavigation);

@@ -20,8 +20,8 @@ namespace PickAndPlay.Models
         public virtual DbSet<Adresse> Adresses { get; set; }
         public virtual DbSet<ConsoleDeJeu> ConsolesDeJeu { get; set; }
         public virtual DbSet<ConsoleJeu> ConsoleJeu { get; set; }
-        public virtual DbSet<Image> Image { get; set; }
-        public virtual DbSet<Jeu> Jeu { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<Jeu> Jeux { get; set; }
         public virtual DbSet<JeuConsoleDeJeu> JeuConsoleDeJeu { get; set; }
         public virtual DbSet<JeuImage> JeuImage { get; set; }
         public virtual DbSet<Location> Locations { get; set; }

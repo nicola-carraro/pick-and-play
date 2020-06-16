@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PickAndPlay.Models
 {
+    [Table("Jeu")]
     public partial class Jeu
     {
         public Jeu()
