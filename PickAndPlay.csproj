@@ -17,6 +17,8 @@
     <Compile Remove="Migrations\20200617101444_IndexDeleted.Designer.cs" />
     <Compile Remove="Migrations\20200617122015_ConsoleJeuNavigation.cs" />
     <Compile Remove="Migrations\20200617122015_ConsoleJeuNavigation.Designer.cs" />
+    <Compile Remove="Migrations\20200617132106_DateSortieConsole.cs" />
+    <Compile Remove="Migrations\20200617132106_DateSortieConsole.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

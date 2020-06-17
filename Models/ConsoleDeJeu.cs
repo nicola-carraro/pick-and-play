@@ -21,6 +21,9 @@ namespace PickAndPlay.Models
         public int? IdImage { get; set; }
         public string Description { get; set; }
 
+        [Column(TypeName = "date")]
+        public DateTime? DateDeSortie { get; set; } 
+
         [InverseProperty("ConsoleDeJeuNavigation")]
         public virtual ConsoleJeu ConsoleJeu { get; set; }
         [InverseProperty("ConsoleDeJeuNavigation")]
