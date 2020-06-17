@@ -88,7 +88,7 @@ namespace PickAndPlay.Models
             {
                 entity.HasKey(e => new { e.IdJeu, e.IdImage });
 
-                entity.HasOne(d => d.IdImageNavigation)
+                entity.HasOne(d => d.ImageNavigation)
                     .WithMany(p => p.JeuImage)
                     .HasForeignKey(d => d.IdImage)
                     .OnDelete(DeleteBehavior.ClientSetNull)

@@ -15,7 +15,7 @@ namespace PickAndPlay.Models
 
         [ForeignKey(nameof(IdImage))]
         [InverseProperty(nameof(Image.JeuImage))]
-        public virtual Image IdImageNavigation { get; set; }
+        public virtual Image ImageNavigation { get; set; }
         [ForeignKey(nameof(IdJeu))]
         [InverseProperty(nameof(Jeu.JeuImage))]
         public virtual Jeu IdJeuNavigation { get; set; }

@@ -28,7 +28,7 @@ namespace PickAndPlay.Models
         public int? Largeur { get; set; }
         public int? Hauteur { get; set; }
 
-        [InverseProperty("IdImageNavigation")]
+        [InverseProperty("ImageNavigation")]
         public virtual ICollection<JeuImage> JeuImage { get; set; }
         [InverseProperty("IdImageNavigation")]
         public virtual ICollection<MagasinImage> MagasinImage { get; set; }

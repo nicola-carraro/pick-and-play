@@ -26,7 +26,7 @@ namespace PickAndPlay.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Jeu> jeux = _context.Jeux.Include(j => j.JeuImage).ThenInclude(ji => ji.IdImageNavigation);
+            IEnumerable<Jeu> jeux = _context.Jeux.Include(j => j.JeuImage).ThenInclude(ji => ji.ImageNavigation);
             
             foreach (Jeu jeu in jeux)
             {
@@ -34,7 +34,7 @@ namespace PickAndPlay.Controllers
                 {
                     jeu.ImagePrincipale = (from ji in jeu.JeuImage
                                 where ji.ImagePrincipale == true
-                                select ji.IdImageNavigation).FirstOrDefault();
+                                select ji.ImageNavigation).FirstOrDefault();
                    
                 }
             }
@@ -52,7 +52,7 @@ namespace PickAndPlay.Controllers
             var query = (from j in _context.Jeux
                          where j.Id == id
                          select j).Include(j => j.JeuImage)
-                                    .ThenInclude(ji => ji.IdImageNavigation);
+                                    .ThenInclude(ji => ji.ImageNavigation);
 
             Jeu jeu = query.FirstOrDefault();
 
@@ -62,8 +62,8 @@ namespace PickAndPlay.Controllers
             }
 
             jeu.ImagePrincipale = (from ji in jeu.JeuImage
-                           where ji.IdImageNavigation.Largeur >= 1000
-                           select ji.IdImageNavigation).FirstOrDefault();
+                           where ji.ImageNavigation.Largeur >= 1000
+                           select ji.ImageNavigation).FirstOrDefault();
 
             jeu.Notes = _context.NotesJeus.Where(n => n.IdJeu == jeu.Id).ToList();
 
