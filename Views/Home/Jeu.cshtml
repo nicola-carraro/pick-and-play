@@ -1,7 +1,4 @@
 ﻿@using PickAndPlay;
-@using PickAndPlay.Models;
-
-
 
 @{
     ViewData["Title"] = "Jeu";
@@ -53,20 +50,15 @@
             <p>
                 <strong>Plateformes : </strong>
                 @*
-                       @foreach (var jc in Model.JeuConsoleDeJeu)
-                    {
-                        <a href="https://www.playstation.com/fr-fr/ps5/">@jc.IdConsoleDeJeuNavigation.Model
-
-                        </a>
-                    }
+          
                 *@
                 @foreach (var console in Model.Consoles)
                 {
-                    <a href="https://www.playstation.com/fr-fr/ps5/">
-                         @console.Model
+                    <a href="~/Home/ConsoleDeJeu?id=@console.Id">
+                        @console.Model
                         @if (
-                           ((List<ConsoleDeJeu>)Model.Consoles).IndexOf(console) !=
-                           Model.Consoles.Count - 1)
+                          Model.Consoles.IndexOf(console) !=
+                          Model.Consoles.Count - 1)
                         {
 
                             <span>, </span>

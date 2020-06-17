@@ -60,7 +60,7 @@ namespace PickAndPlay.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne(d => d.IdNavigation)
+                entity.HasOne(d => d.ConsoleDeJeuNavigation)
                     .WithOne(p => p.ConsoleJeu)
                     .HasForeignKey<ConsoleJeu>(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -71,7 +71,7 @@ namespace PickAndPlay.Models
             {
                 entity.HasKey(e => new { e.IdConsoleDeJeu, e.IdJeu });
 
-                entity.HasOne(d => d.IdConsoleDeJeuNavigation)
+                entity.HasOne(d => d.ConsoleDeJeuNavigation)
                     .WithMany(p => p.JeuConsoleDeJeu)
                     .HasForeignKey(d => d.IdConsoleDeJeu)
                     .OnDelete(DeleteBehavior.ClientSetNull)

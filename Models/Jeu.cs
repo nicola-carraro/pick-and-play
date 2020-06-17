@@ -46,7 +46,7 @@ namespace PickAndPlay.Models
 
         [InverseProperty("IdJeuNavigation")]
 
-        
+
         public virtual ICollection<JeuConsoleDeJeu> JeuConsoleDeJeu { get; set; }
         [InverseProperty("IdJeuNavigation")]
         public virtual ICollection<JeuImage> JeuImage { get; set; }
@@ -56,8 +56,10 @@ namespace PickAndPlay.Models
 
 
         [NotMapped()]
-        public virtual ICollection<Image> Images { 
-            get {
+        public virtual List<Image> Images
+        {
+            get
+            {
 
                 List<Image> images = new List<Image>();
 
@@ -67,12 +69,12 @@ namespace PickAndPlay.Models
                 }
 
                 return images;
-            } 
-            set { } }
+            }
+        }
 
 
         [NotMapped()]
-        public virtual ICollection<ConsoleDeJeu> Consoles
+        public List<ConsoleDeJeu> Consoles
         {
             get
             {
@@ -81,18 +83,18 @@ namespace PickAndPlay.Models
 
                 if (JeuImage != null)
                 {
-                    JeuConsoleDeJeu.ToList().ForEach(jc => consoles.Add(jc.IdConsoleDeJeuNavigation));
+                    JeuConsoleDeJeu.ToList().ForEach(jc => consoles.Add(jc.ConsoleDeJeuNavigation));
                 }
 
                 return consoles;
             }
-            set { }
+
         }
 
         public decimal? NoteMoyenne()
         {
 
-            if(NoteJeu == null || NoteJeu.Count == 0)
+            if (NoteJeu == null || NoteJeu.Count == 0)
 
             {
                 return null;

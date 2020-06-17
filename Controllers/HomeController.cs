@@ -53,7 +53,7 @@ namespace PickAndPlay.Controllers
                          where j.Id == id
                          select j).Include(j => j.NoteJeu)
                                   .Include(j => j.JeuConsoleDeJeu)
-                                  .ThenInclude(cj => cj.IdConsoleDeJeuNavigation)
+                                  .ThenInclude(cj => cj.ConsoleDeJeuNavigation)
                                   .Include(j => j.JeuImage)
                                   .ThenInclude(ji => ji.ImageNavigation);
 
@@ -71,16 +71,21 @@ namespace PickAndPlay.Controllers
 
           
 
-            foreach (var cj in jeu.JeuConsoleDeJeu)
-            {
-                Console.WriteLine(cj.IdConsoleDeJeuNavigation.Model);
-            }
-
-            Console.WriteLine(jeu.NoteMoyenne());
+          
 
 
 
             return View(jeu);
+        }
+
+
+        public ActionResult ConsoleDeJeu(int? id)
+        {
+            ConsoleDeJeu console = _context.ConsolesDeJeu.Where(c => c.Id == id).FirstOrDefault();
+
+
+
+            return View(console);
         }
 
 
