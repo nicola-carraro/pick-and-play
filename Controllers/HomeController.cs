@@ -64,9 +64,12 @@ namespace PickAndPlay.Controllers
                 return NotFound();
             }
 
+            
             jeu.ImagePrincipale = (from ji in jeu.JeuImage
                                    where ji.ImageNavigation.Largeur >= 1000
                                    select ji.ImageNavigation).FirstOrDefault();
+
+          
 
             foreach (var cj in jeu.JeuConsoleDeJeu)
             {

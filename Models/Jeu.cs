@@ -56,7 +56,38 @@ namespace PickAndPlay.Models
 
 
         [NotMapped()]
-        public virtual ICollection<Image> Images { get; set; }
+        public virtual ICollection<Image> Images { 
+            get {
+
+                List<Image> images = new List<Image>();
+
+                if (JeuImage != null)
+                {
+                    JeuImage.ToList().ForEach(ji => images.Add(ji.ImageNavigation));
+                }
+
+                return images;
+            } 
+            set { } }
+
+
+        [NotMapped()]
+        public virtual ICollection<ConsoleDeJeu> Consoles
+        {
+            get
+            {
+
+                List<ConsoleDeJeu> consoles = new List<ConsoleDeJeu>();
+
+                if (JeuImage != null)
+                {
+                    JeuConsoleDeJeu.ToList().ForEach(jc => consoles.Add(jc.IdConsoleDeJeuNavigation));
+                }
+
+                return consoles;
+            }
+            set { }
+        }
 
         public decimal? NoteMoyenne()
         {

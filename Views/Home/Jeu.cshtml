@@ -52,13 +52,29 @@
             </p>
             <p>
                 <strong>Plateformes : </strong>
-                @foreach (var jc in Model.JeuConsoleDeJeu)
-                { 
-                    <a href="https://www.playstation.com/fr-fr/ps5/">@jc.IdConsoleDeJeuNavigation.Model
-             
+                @*
+                       @foreach (var jc in Model.JeuConsoleDeJeu)
+                    {
+                        <a href="https://www.playstation.com/fr-fr/ps5/">@jc.IdConsoleDeJeuNavigation.Model
+
+                        </a>
+                    }
+                *@
+                @foreach (var console in Model.Consoles)
+                {
+                    <a href="https://www.playstation.com/fr-fr/ps5/">
+                         @console.Model
+                        @if (
+                           ((List<ConsoleDeJeu>)Model.Consoles).IndexOf(console) !=
+                           Model.Consoles.Count - 1)
+                        {
+
+                            <span>, </span>
+                        }
+
                     </a>
                 }
-                
+
             </p>
             <p>
                 <strong>Date de sortie : </strong>
@@ -135,8 +151,8 @@
                     <div class="form-group row">
                         <label for="note" class="col-sm-3 col-form-label"><strong>Note : </strong></label>
                         <span id="note" class="mt-2">
-                            
-                          @if (!Model.NoteMoyenne().HasValue)
+
+                            @if (!Model.NoteMoyenne().HasValue)
                             {
                                 <a href="#">Non noté</a>
                             }
