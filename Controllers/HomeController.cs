@@ -81,10 +81,9 @@ namespace PickAndPlay.Controllers
 
         public ActionResult ConsoleDeJeu(int? id)
         {
-            ConsoleDeJeu console = _context.ConsolesDeJeu.Where(c => c.Id == id).FirstOrDefault();
-
-
-
+            ConsoleDeJeu console = _context.ConsolesDeJeu.Where(c => c.Id == id)
+                                                         .Include(c => c.ImageNavigation)
+                                                         .FirstOrDefault();
             return View(console);
         }
 

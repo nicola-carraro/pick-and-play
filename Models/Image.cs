@@ -32,5 +32,9 @@ namespace PickAndPlay.Models
         public virtual ICollection<JeuImage> JeuImage { get; set; }
         [InverseProperty("IdImageNavigation")]
         public virtual ICollection<MagasinImage> MagasinImage { get; set; }
+
+
+        [InverseProperty("ImageNavigation")]
+        public virtual ConsoleDeJeu ConsoleNavigation { get; set; }
     }
 }

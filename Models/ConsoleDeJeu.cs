@@ -26,6 +26,8 @@ namespace PickAndPlay.Models
         [InverseProperty("ConsoleDeJeuNavigation")]
         public virtual ICollection<JeuConsoleDeJeu> JeuConsoleDeJeu { get; set; }
 
-        
+        [ForeignKey(nameof(IdImage))]
+       
+        public virtual Image ImageNavigation { get; set; }
     }
 }

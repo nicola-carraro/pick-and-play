@@ -101,6 +101,17 @@ namespace PickAndPlay.Models
                     .HasConstraintName("FK_JeuImage_Jeu");
             });
 
+            modelBuilder.Entity<ConsoleDeJeu>(entity => {
+                entity.HasOne(d => d.ImageNavigation)
+                      .WithOne(p => p.ConsoleNavigation)
+                      .HasForeignKey<ConsoleDeJeu>(d => d.IdImage)
+                      .HasConstraintName("FK_ConsoleDeJeu_Image");
+            }
+
+            
+            
+            );
+
             modelBuilder.Entity<Location>(entity =>
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
