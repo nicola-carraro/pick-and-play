@@ -44,21 +44,21 @@
             </h4>
             <p>
                 <strong>Éditeur : </strong><a href="@Model.LinkEditeur">
-                    @Utilitaires.Display(Model.Editeur, "Inconnu")
+                    @Utilitaires.Afficher(Model.Editeur, "Inconnu")
                 </a>
             </p>
             <p>
                 <strong>Plateformes : </strong>
                 @*
-          
+
                 *@
                 @foreach (var console in Model.Consoles)
                 {
                     <a href="~/Home/ConsoleDeJeu?id=@console.Id">
                         @console.Model
                         @if (
-                          Model.Consoles.IndexOf(console) !=
-                          Model.Consoles.Count - 1)
+                         Model.Consoles.IndexOf(console) !=
+                         Model.Consoles.Count - 1)
                         {
 
                             <span>, </span>
@@ -71,23 +71,14 @@
             <p>
                 <strong>Date de sortie : </strong>
                 <a href="#">
-
-
-                    @if (Model.DateDeSortie == null)
-                    {
-                        <span>Inconnu</span>
-                    }
-                    else
-                    {
-                        @Model.DateDeSortie.GetValueOrDefault().Year
-                    }
+                    @Utilitaires.AfficherAnnee(Model.DateDeSortie, "Inconnue")
                 </a>
             </p>
             <!--<p><strong>Genre : </strong> <a href="#"> Action</a></p>-->
             <p>
                 <strong>Tarif : </strong>
                 <a href="#">
-                    @Utilitaires.Display(Model.PrixLocation, "Inconnu")
+                    @Utilitaires.Afficher(Model.PrixLocation, "Inconnu")
                     @if (Model.PrixLocation.HasValue)
                     {<span>/ semaine</span>}
 

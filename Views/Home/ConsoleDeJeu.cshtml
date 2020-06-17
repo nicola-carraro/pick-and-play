@@ -39,13 +39,17 @@
 <div class="col-md">
     <section class="m-5">
         <h4 class="display-5 m-3">
-           @Utilitaires.Display(@Model.Model, "Nom inconnu")
+            @Utilitaires.Afficher(@Model.Model, "Nom inconnu")
         </h4>
         <div class="m-3">
             <p>
-                <strong>Producteur :</strong><a href="#"> @Utilitaires.Display(@Model.Marque, "Inconnu")</a>
+                <strong>Producteur :</strong><a href="#"> @Utilitaires.Afficher(@Model.Marque, "Inconnu")</a>
             </p>
-            <p><strong>Date de sortie : </strong> <a href="#"> "Inconnue"</a></p>
+            <p>
+                <strong>Date de sortie : </strong> <a href="#">
+                    @Utilitaires.AfficherAnnee(Model.DateDeSortie, "Inconnue")
+                </a>
+            </p>
             <p>
                 <a href="recherche.html">Jeux</a>
             </p>
@@ -64,4 +68,3 @@
         </div>
     </section>
 </div>
-   
