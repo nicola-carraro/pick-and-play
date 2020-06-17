@@ -27,15 +27,15 @@ namespace PickAndPlay.Controllers
         public IActionResult Index()
         {
             IEnumerable<Jeu> jeux = _context.Jeux.Include(j => j.JeuImage).ThenInclude(ji => ji.ImageNavigation);
-            
+
             foreach (Jeu jeu in jeux)
             {
                 if (jeu.JeuImage != null)
                 {
                     jeu.ImagePrincipale = (from ji in jeu.JeuImage
-                                where ji.ImagePrincipale == true
-                                select ji.ImageNavigation).FirstOrDefault();
-                   
+                                           where ji.ImagePrincipale == true
+                                           select ji.ImageNavigation).FirstOrDefault();
+
                 }
             }
 
@@ -51,8 +51,11 @@ namespace PickAndPlay.Controllers
         {
             var query = (from j in _context.Jeux
                          where j.Id == id
-                         select j).Include(j => j.JeuImage)
-                                    .ThenInclude(ji => ji.ImageNavigation);
+                         select j).Include(j => j.NoteJeu)
+                                  .Include(j => j.JeuConsoleDeJeu)
+                                  .ThenInclude(cj => cj.IdConsoleDeJeuNavigation)
+                                  .Include(j => j.JeuImage)
+                                  .ThenInclude(ji => ji.ImageNavigation);
 
             Jeu jeu = query.FirstOrDefault();
 
@@ -62,10 +65,17 @@ namespace PickAndPlay.Controllers
             }
 
             jeu.ImagePrincipale = (from ji in jeu.JeuImage
-                           where ji.ImageNavigation.Largeur >= 1000
-                           select ji.ImageNavigation).FirstOrDefault();
+                                   where ji.ImageNavigation.Largeur >= 1000
+                                   select ji.ImageNavigation).FirstOrDefault();
 
-            jeu.Notes = _context.NotesJeus.Where(n => n.IdJeu == jeu.Id).ToList();
+            foreach (var cj in jeu.JeuConsoleDeJeu)
+            {
+                Console.WriteLine(cj.IdConsoleDeJeuNavigation.Model);
+            }
+
+            Console.WriteLine(jeu.NoteMoyenne());
+
+
 
             return View(jeu);
         }
@@ -79,7 +89,7 @@ namespace PickAndPlay.Controllers
 
                 HttpContext.Response.Redirect("/");
             }
-            List<Jeu> jeux= _context.Jeux.Where(j => j.Nom.Contains(query)).ToList();
+            List<Jeu> jeux = _context.Jeux.Where(j => j.Nom.Contains(query)).ToList();
 
             Console.WriteLine(jeux);
             foreach (var jeu in jeux)

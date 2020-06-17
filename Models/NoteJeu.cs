@@ -13,8 +13,8 @@ namespace PickAndPlay.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Note { get; set; }
 
-        [ForeignKey(nameof(Id))]
+        [ForeignKey(nameof(IdJeu))]
         [InverseProperty(nameof(Jeu.NoteJeu))]
-        public virtual Jeu IdNavigation { get; set; }
+        public virtual Jeu JeuNavigation { get; set; }
     }
 }

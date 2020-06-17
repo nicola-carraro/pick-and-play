@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PickAndPlay.Models;
 
 namespace PickAndPlay.Migrations
 {
     [DbContext(typeof(PickAndPlayContext))]
-    partial class PickAndPlayContextModelSnapshot : ModelSnapshot
+    [Migration("20200617095750_IdJeu")]
+    partial class IdJeu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -346,7 +348,8 @@ namespace PickAndPlay.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdJeu");
+                    b.HasIndex("IdJeu")
+                        .IsUnique();
 
                     b.ToTable("NotesJeus");
                 });
@@ -417,8 +420,8 @@ namespace PickAndPlay.Migrations
             modelBuilder.Entity("PickAndPlay.Models.NoteJeu", b =>
                 {
                     b.HasOne("PickAndPlay.Models.Jeu", "JeuNavigation")
-                        .WithMany("NoteJeu")
-                        .HasForeignKey("IdJeu")
+                        .WithOne("NoteJeu")
+                        .HasForeignKey("PickAndPlay.Models.NoteJeu", "IdJeu")
                         .HasConstraintName("FK_NoteJeu_Jeu")
                         .IsRequired();
                 });

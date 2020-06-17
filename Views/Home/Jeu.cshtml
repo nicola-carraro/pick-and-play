@@ -52,7 +52,13 @@
             </p>
             <p>
                 <strong>Plateformes : </strong>
-                <a href="https://www.playstation.com/fr-fr/ps5/"> PS-5</a>
+                @foreach (var jc in Model.JeuConsoleDeJeu)
+                { 
+                    <a href="https://www.playstation.com/fr-fr/ps5/">@jc.IdConsoleDeJeuNavigation.Model
+             
+                    </a>
+                }
+                
             </p>
             <p>
                 <strong>Date de sortie : </strong>
@@ -129,8 +135,8 @@
                     <div class="form-group row">
                         <label for="note" class="col-sm-3 col-form-label"><strong>Note : </strong></label>
                         <span id="note" class="mt-2">
-
-                            @if (!Model.NoteMoyenne().HasValue)
+                            
+                          @if (!Model.NoteMoyenne().HasValue)
                             {
                                 <a href="#">Non noté</a>
                             }

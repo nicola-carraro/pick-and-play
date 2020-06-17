@@ -11,6 +11,10 @@
     <Compile Remove="Migrations\20200615121309_InitialCreate.Designer.cs" />
     <Compile Remove="Migrations\20200615150516_UrlEditeur.cs" />
     <Compile Remove="Migrations\20200615150516_UrlEditeur.Designer.cs" />
+    <Compile Remove="Migrations\20200617095109_IdJeu.cs" />
+    <Compile Remove="Migrations\20200617095109_IdJeu.Designer.cs" />
+    <Compile Remove="Migrations\20200617101444_IndexDeleted.cs" />
+    <Compile Remove="Migrations\20200617101444_IndexDeleted.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -40,8 +40,10 @@ namespace PickAndPlay.Models
 
         [InverseProperty("IdNavigation")]
         public virtual Location Location { get; set; }
-        [InverseProperty("IdNavigation")]
-        public virtual NoteJeu NoteJeu { get; set; }
+        [InverseProperty("JeuNavigation")]
+        public virtual ICollection<NoteJeu> NoteJeu { get; set; }
+
+
         [InverseProperty("IdJeuNavigation")]
 
         
@@ -56,27 +58,24 @@ namespace PickAndPlay.Models
         [NotMapped()]
         public virtual ICollection<Image> Images { get; set; }
 
-        [NotMapped()]
-        public virtual List<NoteJeu> Notes { get; set; }
-
-
         public decimal? NoteMoyenne()
         {
 
-            if (Notes.Count == 0)
+            if(NoteJeu == null || NoteJeu.Count == 0)
 
             {
                 return null;
             }
 
+
             decimal resultat = 0;
 
-            foreach (var note in Notes)
+            foreach (var note in NoteJeu)
             {
                 resultat += note.Note;
             };
 
-            return resultat / Notes.Count;
+            return resultat / NoteJeu.Count;
         }
 
     }

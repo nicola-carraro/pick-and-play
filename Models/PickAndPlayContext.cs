@@ -133,9 +133,9 @@ namespace PickAndPlay.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.NoteJeu)
-                    .HasForeignKey<NoteJeu>(d => d.Id)
+                entity.HasOne(d => d.JeuNavigation)
+                    .WithMany(p => p.NoteJeu)
+                    .HasForeignKey(d => d.IdJeu)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_NoteJeu_Jeu");
             });
