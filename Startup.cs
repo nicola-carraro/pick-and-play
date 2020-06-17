@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
 using PickAndPlay.Models;
 
 namespace PickAndPlay
@@ -22,7 +23,9 @@ namespace PickAndPlay
         {
             services.AddDbContext<PickAndPlayContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("PickAndPlayContextConnection")));
+          
             services.AddControllersWithViews();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +45,7 @@ namespace PickAndPlay
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -50,7 +54,9 @@ namespace PickAndPlay
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
+
         }
     }
 }

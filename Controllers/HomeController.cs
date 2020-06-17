@@ -56,28 +56,18 @@ namespace PickAndPlay.Controllers
 
             Jeu jeu = query.FirstOrDefault();
 
-            Image image = (from ji in jeu.JeuImage 
-                        where ji.IdImageNavigation.Largeur >= 1000 
-                        select ji.IdImageNavigation).FirstOrDefault();
-
-            jeu.Notes = _context.NotesJeus.Where(n => n.IdJeu == jeu.Id).ToList();
-
-            foreach (var note in jeu.Notes)
-            {
-                Console.WriteLine(note.Note);
-            }
-
             if (jeu == null)
             {
                 return NotFound();
             }
 
-          
+            jeu.ImagePrincipale = (from ji in jeu.JeuImage
+                           where ji.IdImageNavigation.Largeur >= 1000
+                           select ji.IdImageNavigation).FirstOrDefault();
 
-            ViewData["Jeu"] = jeu;
-            ViewData["Image"] = image;
+            jeu.Notes = _context.NotesJeus.Where(n => n.IdJeu == jeu.Id).ToList();
 
-            return View();
+            return View(jeu);
         }
 
 

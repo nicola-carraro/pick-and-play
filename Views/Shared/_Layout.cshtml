@@ -23,6 +23,7 @@
 
         <header>
             <ul class="row nav">
+
                 <li class="col-md-2 nav-item">
                     <a class="nav-link active" href="~/">
                         <img class="img-fluid" src="~/images/logo.png"
@@ -69,26 +70,9 @@
                     </a>
                 </li>
 
-                <li class="col-md mt-2 nav-item text-center">
-                    <div class="btn-group">
-                        <a class="p-2 mr-0 btn nav-link text-danger" href="profil.html">
-                            <span class="h6"> Nicola Carraro</span>
-                            <span class="badge h6 badge-light text-danger">4</span>
-                        </a>
-                        <button type="button" class=" ml-0 btn dropdown-toggle r h6 text-danger" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item text-danger" href="#">Location en retard</a>
-                            <a class="dropdown-item text-success" href="#">
-                                Votre reservation est disponible
-                            </a>
-                            <a class="dropdown-item text-success" href="#">Something else here</a>
-                            <a class="dropdown-item text-success" href="#">Dévoilée la nouvelle Playstation</a>
-                        </div>
-                    </div>
-                </li>
+                
+
+                <partial name="_LoginPartial" />
             </ul>
         </header>
         <main role="main" class="pb-3 m-5 row">

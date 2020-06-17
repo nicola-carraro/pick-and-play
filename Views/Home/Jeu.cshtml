@@ -1,14 +1,15 @@
 ﻿@using PickAndPlay;
 @using PickAndPlay.Models;
 
+
+
 @{
     ViewData["Title"] = "Jeu";
 }
 
-@{
-    Jeu jeu = ViewData["Jeu"] as Jeu;
-    Image imageJeu = ViewData["Image"] as Image;
-}
+
+
+@model PickAndPlay.Models.Jeu;
 
 @section Css {
     <link href="~/bootstrap/css/star-rating.css"
@@ -26,11 +27,11 @@
 <div class="row">
     <div class="col-md-6">
         <div>
-            @if (@imageJeu != null)
+            @if (@Model.ImagePrincipale != null)
             {
                 <img class="img-fluid p-5"
-                     src="/images/jeux/@imageJeu.NomFile"
-                     alt="@imageJeu.Alt" />
+                     src="~/images/jeux/@Model.ImagePrincipale.NomFile"
+                     alt="@Model.ImagePrincipale.Alt" />
             }
 
 
@@ -39,14 +40,14 @@
     <div class="col-md">
         <section class="m-5">
             <h4 class="display-5 m-3">
-                @jeu.Nom
+                @Model.Nom
 
 
 
             </h4>
             <p>
-                <strong>Éditeur : </strong><a href="@jeu.LinkEditeur">
-                    @Utilitaires.Display(jeu.Editeur, "Inconnu")
+                <strong>Éditeur : </strong><a href="@Model.LinkEditeur">
+                    @Utilitaires.Display(Model.Editeur, "Inconnu")
                 </a>
             </p>
             <p>
@@ -58,13 +59,13 @@
                 <a href="#">
 
 
-                    @if (jeu.DateDeSortie == null)
+                    @if (Model.DateDeSortie == null)
                     {
                         <span>Inconnu</span>
                     }
                     else
                     {
-                        @jeu.DateDeSortie.GetValueOrDefault().Year
+                        @Model.DateDeSortie.GetValueOrDefault().Year
                     }
                 </a>
             </p>
@@ -72,8 +73,8 @@
             <p>
                 <strong>Tarif : </strong>
                 <a href="#">
-                    @Utilitaires.Display(jeu.PrixLocation, "Inconnu")
-                    @if (jeu.PrixLocation.HasValue)
+                    @Utilitaires.Display(Model.PrixLocation, "Inconnu")
+                    @if (Model.PrixLocation.HasValue)
                     {<span>/ semaine</span>}
 
                 </a>
@@ -82,13 +83,13 @@
             <p>
                 <strong>Classification :</strong>
 
-                @if (jeu.Pegi.HasValue)
+                @if (Model.Pegi.HasValue)
                 {
                 <p>
                     <a href="https://pegi.info/">
                         @{
-                            string src = "/images/pegi/pegi" + jeu.Pegi + ".png";
-                            string alt = "Pegi " + jeu.Pegi;
+                            string src = "/images/pegi/pegi" + Model.Pegi + ".png";
+                            string alt = "Pegi " + Model.Pegi;
                         }
                         <img class="ml-3 w-25" src=@src alt=@alt />
                     </a>
@@ -102,7 +103,7 @@
 
                 <form class="form-inline" action="#" method="post">
 
-                    @if (jeu.Disponible.GetValueOrDefault())
+                    @if (Model.Disponible.GetValueOrDefault())
                     {
 
                         <a class="text-success" href="#"> Disponible à la location</a>
@@ -129,7 +130,7 @@
                         <label for="note" class="col-sm-3 col-form-label"><strong>Note : </strong></label>
                         <span id="note" class="mt-2">
 
-                            @if (!jeu.NoteMoyenne().HasValue)
+                            @if (!Model.NoteMoyenne().HasValue)
                             {
                                 <a href="#">Non noté</a>
                             }
@@ -142,7 +143,7 @@
 
                                     string klass = "fa fa-star";
 
-                                    if ((jeu.NoteMoyenne() - i) >= 0.5m)
+                                    if ((Model.NoteMoyenne() - i) >= 0.5m)
                                     {
                                         klass += " checked";
                                     }
