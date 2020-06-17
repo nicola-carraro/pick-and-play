@@ -9,7 +9,7 @@
 
     <li class="col-md-2 mt-2 nav-item text-center">
         <div class="btn-group">
-            <a id="manage" class="p-2 mr-0 btn nav-link text-danger" asp-area="Identity" asp-page="/Account/Manage/Index title="Manage">
+            <a id="manage" class="p-2 mr-0 btn nav-link text-danger" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
                 <span class="h6"> @UserManager.GetUserName(User)</span>
                 <span class="badge h6 badge-light text-danger">4</span>
             </a>
@@ -27,13 +27,10 @@
             </div>
         </div>
     </li>
-    <!-- <li class="col-md mt-2 nav-item text-center">
-        <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-    </li>-->
 
     <li class="col-md mt-2 nav-item text-center">
         <form id="logoutForm" class=" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button id="logout" type="submit" class="p2 btn nav-link  text-primary"><span class="h6">Logout</span></button>
+            <a id="logout"  asp-area="Identity" asp-page="/Account/Logout" class="p2 btn nav-link  text-primary"><span class="h6">Logout</span></a>
         </form>
     </li>
 }
