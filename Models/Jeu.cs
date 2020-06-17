@@ -52,7 +52,53 @@ namespace PickAndPlay.Models
         public virtual ICollection<JeuImage> JeuImage { get; set; }
 
         [NotMapped()]
-        public virtual Image ImagePrincipale { get; set; }
+        public virtual Image ImagePrincipale
+        {
+            get
+            {
+                if (JeuImage == null)
+
+                {
+                    return null;
+                }
+
+                else
+                {
+                    return JeuImage.Where(ji => ji.ImagePrincipale)
+                                   .FirstOrDefault()
+                                   .ImageNavigation;
+                }
+
+
+            }
+            set { }
+       
+        }
+
+        [NotMapped()]
+        public virtual Image ImageGrande
+        {
+            get
+            {
+                if (JeuImage == null)
+
+                {
+                    return null;
+                }
+
+                else
+                {
+                    var jeuImage = JeuImage.Where(ji => ji.ImageNavigation.Largeur >= 1000)
+                                    .FirstOrDefault();
+
+                    return jeuImage == null ? 
+                            null : 
+                            jeuImage.ImageNavigation;
+                }
+
+            }
+
+        }
 
 
         [NotMapped()]
@@ -91,6 +137,9 @@ namespace PickAndPlay.Models
 
         }
 
+
+
+ 
         public decimal? NoteMoyenne()
         {
 

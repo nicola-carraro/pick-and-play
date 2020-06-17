@@ -5,19 +5,23 @@
     ViewData["Title"] = "Accueil";
 }
 
-@{IEnumerable<Jeu> nouveautesJeux = ViewData["NouveautesJeux"] as IEnumerable<Jeu>;
+@{IEnumerable<Jeu> nouveautes = ViewData["nouveautes"] as IEnumerable<Jeu>;
+
+}
+
+
+@{IEnumerable<Jeu> preferes = ViewData["preferes"] as IEnumerable<Jeu>;
 
 }
 
 <div class="row">
-    <div class="col p-2">
-        <h5 class="text-center text-primary m-4 display-5">
-            Nouveautés
-        </h5>
-    </div>
+
+    <h5 class="mx-auto text-center text-primary  display-5">
+        Vos Préférés
+    </h5>
 </div>
 <div class="row">
-    @foreach (Jeu jeu in nouveautesJeux)
+    @foreach (Jeu jeu in preferes)
     {
         <div class="col-md m-3 card">
             <div class="p-2">
@@ -40,37 +44,32 @@
     }
 </div>
 
+<div class="row">
 
+    <h5 class="mx-auto text-center text-primary  display-5">
+        Vos Préférés
+    </h5>
+</div>
+<div class="row">
+    @foreach (Jeu jeu in nouveautes)
+    {
+        <div class="col-md m-3 card">
+            <div class="p-2">
+                @if (jeu.ImagePrincipale != null)
+                {
+                    <img class="rounded" src="./images/jeux/@jeu.ImagePrincipale.NomFile" alt="@jeu.ImagePrincipale.Alt" />
+                }
+            </div>
+            <div class="card m-2 p-2">
+                <a href="/Home/Jeu?id=@jeu.Id">
+                    <h5 class="mt-0">@jeu.Nom</h5>
+                </a>
 
-
-
-
-
-
-<!--<div class="col-md m-3 card">
-        <div class="p-2">
-            <img class="rounded" src="./images/mario-small.png" alt="..." />
+                @if (jeu.Description != null)
+                {
+                    @jeu.Description;
+                }
+            </div>
         </div>
-        <div class="card m-2 p-2">
-            <a href="jeux.html">
-                <h5 class="mt-0">Champignon Grognon</h5>
-            </a>
-
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin.
-        </div>
-    </div>
-
-    <div class="col-md m-3 card">
-        <div class="p-2">
-            <img class="rounded" src="./images/pacman-small.png" alt="..." />
-        </div>
-        <div class="card m-2 p-2">
-            <a href="jeux.html">
-                <h5 class="mt-0">Pacman Gourmand</h5>
-            </a>
-
-            Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia
-            congue felis in faucibus.
-        </div>
-</div>-->
+    }
+</div>
