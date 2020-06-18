@@ -142,10 +142,29 @@ namespace PickAndPlay.Models
                     .HasConstraintName("FK_Location_Jeu");
             });
 
-      
-      
+
+            modelBuilder.Entity<Genre>(entity => 
+            { 
+                entity.Property(entity => entity.Id).ValueGeneratedOnAdd();
+            });
 
 
+            modelBuilder.Entity<JeuGenre>(entity =>
+            {
+                entity.HasKey(e => new { e.IdJeu, e.IdGenre });
+
+                entity.HasOne(d => d.JeuNavigation)
+                    .WithMany(p => p.JeuGenre)
+                    .HasForeignKey(d => d.IdJeu)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_JeuGenre_Jeu");
+
+                entity.HasOne(d => d.GenreNavigation)
+                    .WithMany(p => p.JeuGenre)
+                    .HasForeignKey(d => d.IdGenre)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_JeuGenre_Genre");
+            });
 
             modelBuilder.Entity<MagasinImage>(entity =>
             {

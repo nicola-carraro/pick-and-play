@@ -53,6 +53,10 @@ namespace PickAndPlay.Models
         public virtual ICollection<JeuImage> JeuImage { get; set; }
 
 
+        [InverseProperty("JeuNavigation")]
+        public virtual ICollection<JeuGenre> JeuGenre { get; set; }
+
+
         [NotMapped()]
         public virtual Image ImagePrincipale
         {

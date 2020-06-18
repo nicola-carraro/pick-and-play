@@ -23,6 +23,10 @@
     <Compile Remove="Migrations\20200618105918_Plateforme.Designer.cs" />
     <Compile Remove="Migrations\20200618110138_Plateforme.cs" />
     <Compile Remove="Migrations\20200618110138_Plateforme.Designer.cs" />
+    <Compile Remove="Migrations\20200618145633_Genre.cs" />
+    <Compile Remove="Migrations\20200618145633_Genre.Designer.cs" />
+    <Compile Remove="Migrations\20200618145738_Genre.cs" />
+    <Compile Remove="Migrations\20200618145738_Genre.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

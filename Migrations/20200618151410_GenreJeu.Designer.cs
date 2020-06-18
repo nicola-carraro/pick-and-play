@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PickAndPlay.Models;
 
 namespace PickAndPlay.Migrations
 {
     [DbContext(typeof(PickAndPlayContext))]
-    partial class PickAndPlayContextModelSnapshot : ModelSnapshot
+    [Migration("20200618151410_GenreJeu")]
+    partial class GenreJeu
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

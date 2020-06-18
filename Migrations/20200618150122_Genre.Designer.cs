@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PickAndPlay.Models;
 
 namespace PickAndPlay.Migrations
 {
     [DbContext(typeof(PickAndPlayContext))]
-    partial class PickAndPlayContextModelSnapshot : ModelSnapshot
+    [Migration("20200618150122_Genre")]
+    partial class Genre
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -266,21 +268,6 @@ namespace PickAndPlay.Migrations
                     b.ToTable("JeuConsoleDeJeu");
                 });
 
-            modelBuilder.Entity("PickAndPlay.Models.JeuGenre", b =>
-                {
-                    b.Property<int>("IdJeu")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdGenre")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdJeu", "IdGenre");
-
-                    b.HasIndex("IdGenre");
-
-                    b.ToTable("JeuGenre");
-                });
-
             modelBuilder.Entity("PickAndPlay.Models.JeuImage", b =>
                 {
                     b.Property<int>("IdJeu")
@@ -440,21 +427,6 @@ namespace PickAndPlay.Migrations
                         .WithMany("JeuConsoleDeJeu")
                         .HasForeignKey("IdJeu")
                         .HasConstraintName("FK_JeuConsoleDeJeu_Jeu")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("PickAndPlay.Models.JeuGenre", b =>
-                {
-                    b.HasOne("PickAndPlay.Models.Genre", "GenreNavigation")
-                        .WithMany("JeuGenre")
-                        .HasForeignKey("IdGenre")
-                        .HasConstraintName("FK_JeuGenre_Genre")
-                        .IsRequired();
-
-                    b.HasOne("PickAndPlay.Models.Jeu", "JeuNavigation")
-                        .WithMany("JeuGenre")
-                        .HasForeignKey("IdJeu")
-                        .HasConstraintName("FK_JeuGenre_Jeu")
                         .IsRequired();
                 });
 
