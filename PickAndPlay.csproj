@@ -19,6 +19,10 @@
     <Compile Remove="Migrations\20200617122015_ConsoleJeuNavigation.Designer.cs" />
     <Compile Remove="Migrations\20200617132106_DateSortieConsole.cs" />
     <Compile Remove="Migrations\20200617132106_DateSortieConsole.Designer.cs" />
+    <Compile Remove="Migrations\20200618105918_Plateforme.cs" />
+    <Compile Remove="Migrations\20200618105918_Plateforme.Designer.cs" />
+    <Compile Remove="Migrations\20200618110138_Plateforme.cs" />
+    <Compile Remove="Migrations\20200618110138_Plateforme.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

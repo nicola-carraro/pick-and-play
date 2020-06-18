@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PickAndPlay.Models
 {
+
     public partial class ConsoleDeJeu
     {
         public ConsoleDeJeu()
