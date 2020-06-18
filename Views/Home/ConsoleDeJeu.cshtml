@@ -19,43 +19,45 @@
           href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
 }
 
-
-<div class="col-md-6">
-    <div>
-        <img class="img-fluid p-5"
-             src="~/images/consoles/@Model.ImageNavigation.NomFile"
-             alt="@Model.ImageNavigation.Alt" />
+<div class="row">
+    <div class="col-md-6">
+        <div>
+            <img class="img-fluid p-5"
+                 src="~/images/consoles/@Model.ImageNavigation.NomFile"
+                 alt="@Model.ImageNavigation.Alt" />
+        </div>
+    </div>
+    <div class="col-md">
+        <section class="m-5">
+            <h4 class="display-5 m-3">
+                @Utilitaires.Afficher(@Model.Model, "Nom inconnu")
+            </h4>
+            <div class="m-3">
+                <p>
+                    <strong>Producteur :</strong><a href="#"> @Utilitaires.Afficher(@Model.Marque, "Inconnu")</a>
+                </p>
+                <p>
+                    <strong>Date de sortie : </strong> <a href="#">
+                        @Utilitaires.AfficherAnnee(Model.DateDeSortie, "Inconnue")
+                    </a>
+                </p>
+                <p>
+                    <a href="recherche.html">Jeux</a>
+                </p>
+                <form class="">
+                    <div class="form-group mt-4 ml-1 row">
+                        <strong>Note : </strong>
+                        <span class=" col-sm-4" id="note">
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </section>
     </div>
 </div>
-<div class="col-md">
-    <section class="m-5">
-        <h4 class="display-5 m-3">
-            @Utilitaires.Afficher(@Model.Model, "Nom inconnu")
-        </h4>
-        <div class="m-3">
-            <p>
-                <strong>Producteur :</strong><a href="#"> @Utilitaires.Afficher(@Model.Marque, "Inconnu")</a>
-            </p>
-            <p>
-                <strong>Date de sortie : </strong> <a href="#">
-                    @Utilitaires.AfficherAnnee(Model.DateDeSortie, "Inconnue")
-                </a>
-            </p>
-            <p>
-                <a href="recherche.html">Jeux</a>
-            </p>
-            <form class="">
-                <div class="form-group mt-4 ml-1 row">
-                    <strong>Note : </strong>
-                    <span class=" col-sm-4" id="note">
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
-                        <span class="fa fa-star"></span>
-                    </span>
-                </div>
-            </form>
-        </div>
-    </section>
-</div>
+
