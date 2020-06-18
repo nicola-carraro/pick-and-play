@@ -7,28 +7,41 @@
 <div class="row">
     <div class="col-md-6">
         <div>
-            <img class="img-fluid p-5"
-                 src="./images/magasin.jpg"
-                 alt="Lapins crétins avec cadis" />
+
+            @if (Model.Images.Count != 0)
+            {
+                <img class="img-fluid p-5"
+                     src="~/images/magasins/@Model.Images[0].NomFile"
+                     alt="@Model.Images[0].Alt" />
+            }
+
         </div>
     </div>
     <div class="col-md">
         <section class="m-5">
             <h4 class="display-5 m-3">
-                Clermont Jeux
+                @Utilitaires.Afficher(Model.Nom, "Inconnu")
             </h4>
 
             <div class="m-3">
                 <p>
                     <strong>Adresse :</strong>
-                    <a href="https://www.google.com/maps/place/39+Rue+Lecuelle+63100+Clermont-Ferrand/">
-                        39 rue Lecuellé, 63100 Clermont-Ferrand
-                    </a>
+                    @if (Model.Adresse != null)
+                    {
+                        string numeroDeRue = Utilitaires.Afficher(Model.AdresseNavigation.NumeroDeRue, "Inconnu");
+                        string rue = Utilitaires.Afficher(Model.AdresseNavigation.Rue, "Inconnue");
+                        string codePostale = Utilitaires.Afficher(Model.AdresseNavigation.CodePostal, "Inconnu");
+                        string ville = Utilitaires.Afficher(Model.AdresseNavigation.Ville, "Inconnue");
+
+                        <a href="https://www.google.com/maps/place/@numeroDeRue+@rue,+@codePostale+@ville/">
+                            @numeroDeRue @rue, @codePostale @ville
+                        </a>
+                    }
                 </p>
 
                 <p>
                     <strong>Proprietaire : </strong>
-                    <a href="profil.html"> Marc</a>
+                    <a href="#"> @Model.Gerent</a>
                 </p>
             </div>
         </section>

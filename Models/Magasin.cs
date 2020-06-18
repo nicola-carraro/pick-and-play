@@ -19,6 +19,10 @@ namespace PickAndPlay.Models
         public int? Gerent { get; set; }
         public int? Adresse { get; set; }
 
+        [ForeignKey(nameof(Adresse))]
+        public Adresse AdresseNavigation { get; set; }
+
+
         [InverseProperty("MagasinNavigation")]
         public virtual ICollection<MagasinImage> MagasinImage { get; set; }
 

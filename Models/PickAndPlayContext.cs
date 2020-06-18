@@ -54,7 +54,7 @@ namespace PickAndPlay.Models
                 entity.Property(e => e.NumeroDeRue).IsFixedLength();
             });
 
-         
+
 
             modelBuilder.Entity<ConsoleJeu>(entity =>
             {
@@ -101,15 +101,21 @@ namespace PickAndPlay.Models
                     .HasConstraintName("FK_JeuImage_Jeu");
             });
 
-            modelBuilder.Entity<ConsoleDeJeu>(entity => {
+            modelBuilder.Entity<ConsoleDeJeu>(entity =>
+            {
                 entity.HasOne(d => d.ImageNavigation)
                       .WithOne(p => p.ConsoleNavigation)
                       .HasForeignKey<ConsoleDeJeu>(d => d.IdImage)
                       .HasConstraintName("FK_ConsoleDeJeu_Image");
             }
 
-            
-            
+            );
+
+            modelBuilder.Entity<Magasin>(entity =>
+            entity.HasOne(d => d.AdresseNavigation)
+                  .WithOne(p => p.Magasin)
+                  .HasForeignKey<Magasin>(d => d.Adresse)
+                  .HasConstraintName("Fk_Magasin_Adresse")
             );
 
             modelBuilder.Entity<Location>(entity =>
@@ -123,7 +129,7 @@ namespace PickAndPlay.Models
                     .HasConstraintName("FK_Table_2_Jeu");
             });
 
-            
+
 
             modelBuilder.Entity<MagasinImage>(entity =>
             {

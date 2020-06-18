@@ -19,5 +19,7 @@ namespace PickAndPlay.Models
         public string CodePostal { get; set; }
         [StringLength(50)]
         public string Pays { get; set; }
+
+        public virtual Magasin Magasin { get; set; }
     }
 }
