@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
@@ -97,7 +98,11 @@ namespace PickAndPlay.Controllers
             List<Actualite> actualites = _context.Actualites
                                                  .OrderByDescending(a => a.Date)
                                                  .Take(10)
+                                                 .Include(a => a.ActualiteImage)
+                                                 .ThenInclude(ai => ai.ImageNavigation)
                                                  .ToList();
+
+            Console.WriteLine(actualites[0].Images);
             ViewBag.actualites = actualites;
             return View();
         }

@@ -45,6 +45,19 @@ namespace PickAndPlay.Models
             modelBuilder.Entity<ActualiteImage>(entity =>
             {
                 entity.HasKey(e => new { e.IdActualite, e.IdImage });
+
+                entity.HasOne(d => d.ActualiteNavigation)
+                      .WithMany(p => p.ActualiteImage)
+                      .HasForeignKey(d => d.IdActualite)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("FK_ActualiteImage_Actualite");
+
+
+                entity.HasOne(d => d.ImageNavigation)
+                      .WithMany(p => p.ActualiteImage)
+                      .HasForeignKey(d => d.IdImage)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("FK_ActualiteImage_Image");
             });
 
             modelBuilder.Entity<Adresse>(entity =>
