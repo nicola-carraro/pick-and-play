@@ -38,18 +38,20 @@ namespace PickAndPlay.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? PrixAchat { get; set; }
 
-        [InverseProperty("IdNavigation")]
-        public virtual Location Location { get; set; }
+
         [InverseProperty("JeuNavigation")]
         public virtual ICollection<NoteJeu> NoteJeu { get; set; }
 
+        [InverseProperty("JeuNavigation")]
+        public virtual ICollection<Location> Locations { get; set; }
+
 
         [InverseProperty("IdJeuNavigation")]
-
-
         public virtual ICollection<JeuConsoleDeJeu> JeuConsoleDeJeu { get; set; }
+
         [InverseProperty("IdJeuNavigation")]
         public virtual ICollection<JeuImage> JeuImage { get; set; }
+
 
         [NotMapped()]
         public virtual Image ImagePrincipale

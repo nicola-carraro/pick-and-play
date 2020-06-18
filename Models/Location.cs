@@ -9,18 +9,18 @@ namespace PickAndPlay.Models
     {
         [StringLength(450)]
         public string IdUtilisateur { get; set; }
-        
+
         public int? IdJeu { get; set; }
-        
+
         [Key]
         public int Id { get; set; }
-        
+
         [Column(TypeName = "datetime")]
         public DateTime? DateHeureLocation { get; set; }
-        
+
         [Column(TypeName = "datetime")]
         public DateTime? DateRestitutionPrevue { get; set; }
-        
+
         [Column(TypeName = "datetime")]
         public DateTime? DateRestitutionEffective { get; set; }
 
@@ -30,8 +30,9 @@ namespace PickAndPlay.Models
         [Column(TypeName = "decimal(18, 0)")]
         public decimal? Penalite { get; set; }
 
-        [ForeignKey(nameof(Id))]
-        [InverseProperty(nameof(Jeu.Location))]
-        public virtual Jeu IdNavigation { get; set; }
+        [ForeignKey(nameof(IdJeu))]
+        [InverseProperty(nameof(Jeu.Locations))]
+        public virtual Jeu JeuNavigation{get; set;}
+
     }
 }

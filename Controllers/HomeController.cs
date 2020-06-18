@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -93,6 +94,20 @@ namespace PickAndPlay.Controllers
             return View(magasin);
         }
 
+        public ActionResult Location(int? jeu) 
+        {
+            if (!jeu.HasValue)
+            {
+                return Redirect("/");
+            }
+
+            string userId = User.Identity.GetUserId();
+
+           
+
+            return Redirect("/Home/Jeu?id="  + jeu);
+        }
+
         public ActionResult Actualites()
         {
             List<Actualite> actualites = _context.Actualites
@@ -113,15 +128,11 @@ namespace PickAndPlay.Controllers
 
             if (string.IsNullOrWhiteSpace(query))
             {
-
                 HttpContext.Response.Redirect("/");
             }
 
-            List<Jeu> jeux = _context.Jeux.Where(j => j.Nom.Contains(query)).ToList();
-
-            /*
-            List<object> resultats = new List<object>();
-            resultats.AddRange(jeux);*/
+            List<Jeu> jeux = _context.Jeux.Where(j => j.Nom.Contains(query))
+                                          .ToList();
 
             ViewData["resultat"] = jeux;
             ViewData["query"] = query;

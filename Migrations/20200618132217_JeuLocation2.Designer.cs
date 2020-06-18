@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PickAndPlay.Models;
 
 namespace PickAndPlay.Migrations
 {
     [DbContext(typeof(PickAndPlayContext))]
-    partial class PickAndPlayContextModelSnapshot : ModelSnapshot
+    [Migration("20200618132217_JeuLocation2")]
+    partial class JeuLocation2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -269,6 +271,21 @@ namespace PickAndPlay.Migrations
                     b.ToTable("JeuImage");
                 });
 
+            modelBuilder.Entity("PickAndPlay.Models.JeuLocation", b =>
+                {
+                    b.Property<int>("IdJeu")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdLocation")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdJeu", "IdLocation");
+
+                    b.HasIndex("IdLocation");
+
+                    b.ToTable("JeuLocation");
+                });
+
             modelBuilder.Entity("PickAndPlay.Models.Location", b =>
                 {
                     b.Property<int>("Id")
@@ -299,8 +316,6 @@ namespace PickAndPlay.Migrations
                         .HasColumnType("decimal(18, 0)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("IdJeu");
 
                     b.ToTable("Locations");
                 });
@@ -428,12 +443,21 @@ namespace PickAndPlay.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PickAndPlay.Models.Location", b =>
+            modelBuilder.Entity("PickAndPlay.Models.JeuLocation", b =>
                 {
                     b.HasOne("PickAndPlay.Models.Jeu", "JeuNavigation")
-                        .WithMany("Locations")
+                        .WithMany("JeuLocationNavigation")
                         .HasForeignKey("IdJeu")
-                        .HasConstraintName("FK_Location_Jeu");
+                        .HasConstraintName("Fk_JeuLocation_Jeu")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PickAndPlay.Models.Location", "LocationNavigation")
+                        .WithMany("JeuLocationNavigation")
+                        .HasForeignKey("IdLocation")
+                        .HasConstraintName("Fk_JeuLocation_Location")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PickAndPlay.Models.Magasin", b =>

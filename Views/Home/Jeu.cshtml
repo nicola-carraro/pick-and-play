@@ -1,12 +1,12 @@
 ﻿@using PickAndPlay;
 
+@model PickAndPlay.Models.Jeu;
+
 @{
     ViewData["Title"] = Model.Nom;
 }
 
 
-
-@model PickAndPlay.Models.Jeu;
 
 @section Css {
     <link href="~/bootstrap/css/star-rating.css"
@@ -38,9 +38,6 @@
         <section class="m-5">
             <h4 class="display-5 m-3">
                 @Model.Nom
-
-
-
             </h4>
             <p>
                 <strong>Éditeur : </strong><a href="@Model.LinkEditeur">
@@ -49,14 +46,14 @@
             </p>
             <p>
                 <strong>Plateformes : </strong>
-             
+
                 @foreach (var console in Model.Consoles)
                 {
                     <a href="~/Home/ConsoleDeJeu?id=@console.Id">
                         @console.Model
                         @if (
-                        Model.Consoles.IndexOf(console) !=
-                        Model.Consoles.Count - 1)
+                       Model.Consoles.IndexOf(console) !=
+                       Model.Consoles.Count - 1)
                         {
 
                             <span>, </span>
@@ -103,12 +100,15 @@
 
                 </p>
 
-                <form class="form-inline" action="#" method="post">
+                <form class="form-inline" asp-controller="Home" asp-action="Reserver" method="get">
 
                     @if (Model.Disponible.GetValueOrDefault())
                     {
 
                         <a class="text-success" href="#"> Disponible à la location</a>
+
+                        <input type="hidden" name="jeu" value="@Model.Id" />
+
                         <input class="ml-4 btn btn-success"
                                type="submit"
                                value="Réserver" />
@@ -121,10 +121,6 @@
                                value="Non Disponible"
                                disabled />
                     }
-
-
-
-
                 </form>
 
                 <form class="mt-5">
