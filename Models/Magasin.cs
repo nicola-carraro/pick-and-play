@@ -19,7 +19,29 @@ namespace PickAndPlay.Models
         public int? Gerent { get; set; }
         public int? Adresse { get; set; }
 
-        [InverseProperty("IdMagasinNavigation")]
+        [InverseProperty("MagasinNavigation")]
         public virtual ICollection<MagasinImage> MagasinImage { get; set; }
+
+        [NotMapped]
+        public List<Image> Images 
+        { 
+            get
+            {
+                List<Image> images = new List<Image>();
+
+                if (MagasinImage != null)
+                {
+                    foreach (var mi in MagasinImage)
+                    {
+                        if (mi.ImageNavigation != null)
+                        {
+                            images.Add(mi.ImageNavigation); 
+                        }
+                    }
+                }
+
+                return images;
+            }
+        }
     }
 }

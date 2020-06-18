@@ -49,16 +49,14 @@
             </p>
             <p>
                 <strong>Plateformes : </strong>
-                @*
-
-                *@
+             
                 @foreach (var console in Model.Consoles)
                 {
                     <a href="~/Home/ConsoleDeJeu?id=@console.Id">
                         @console.Model
                         @if (
-                         Model.Consoles.IndexOf(console) !=
-                         Model.Consoles.Count - 1)
+                        Model.Consoles.IndexOf(console) !=
+                        Model.Consoles.Count - 1)
                         {
 
                             <span>, </span>
@@ -66,7 +64,6 @@
 
                     </a>
                 }
-
             </p>
             <p>
                 <strong>Date de sortie : </strong>
@@ -157,10 +154,6 @@
                                 }
 
                             }
-
-
-
-
                         </span>
                     </div>
                 </form>

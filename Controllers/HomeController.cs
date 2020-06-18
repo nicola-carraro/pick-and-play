@@ -76,6 +76,22 @@ namespace PickAndPlay.Controllers
             return View(console);
         }
 
+        public ActionResult Magasin(int? id)
+        {
+            var magasin = _context.Magasins.Where(m => m.Id == id)
+                                           .Include(m => m.AdresseNavigation)
+                                           .Include(m => m.MagasinImage)
+                                           .ThenInclude(mi => mi.ImageNavigation)
+                                           .FirstOrDefault();
+
+            if (magasin == null)
+            {
+                return NotFound();
+            }
+
+            return View(magasin);
+        }
+
 
         public ActionResult Rechercher(string query)
         {

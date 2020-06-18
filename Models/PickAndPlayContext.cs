@@ -123,17 +123,19 @@ namespace PickAndPlay.Models
                     .HasConstraintName("FK_Table_2_Jeu");
             });
 
+            
+
             modelBuilder.Entity<MagasinImage>(entity =>
             {
                 entity.HasKey(e => new { e.IdMagasin, e.IdImage });
 
-                entity.HasOne(d => d.IdImageNavigation)
+                entity.HasOne(d => d.ImageNavigation)
                     .WithMany(p => p.MagasinImage)
                     .HasForeignKey(d => d.IdImage)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MagasinImage_Image");
 
-                entity.HasOne(d => d.IdMagasinNavigation)
+                entity.HasOne(d => d.MagasinNavigation)
                     .WithMany(p => p.MagasinImage)
                     .HasForeignKey(d => d.IdMagasin)
                     .OnDelete(DeleteBehavior.ClientSetNull)
