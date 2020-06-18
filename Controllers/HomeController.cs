@@ -31,7 +31,7 @@ namespace PickAndPlay.Controllers
                                      .Take(3)
                                      .ToList();
 
-            List<Jeu> nouveautes = jeux.OrderBy(j => j.DateDeSortie)
+            List<Jeu> nouveautes = jeux.OrderByDescending(j => j.DateDeSortie)
                                        .Take(3)
                                        .ToList();
 
@@ -90,6 +90,16 @@ namespace PickAndPlay.Controllers
             }
 
             return View(magasin);
+        }
+
+        public ActionResult Actualites()
+        {
+            List<Actualite> actualites = _context.Actualites
+                                                 .OrderByDescending(a => a.Date)
+                                                 .Take(10)
+                                                 .ToList();
+            ViewBag.actualites = actualites;
+            return View();
         }
 
 

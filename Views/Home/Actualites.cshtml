@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Actualités";
+}
+
+@{
+
+    int compteurActualites = 0;
+}
+
+@if (compteurActualites < ViewBag.actualites.Count)
+
+{
+    <div class="jumbotron m-5 p-4 p-md-5 text-white rounded bg-secondary">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic">@Utilitaires.Afficher(ViewBag.actualites[compteurActualites].Titre, "Inconnu")</h1>
+            <p class="lead my-3">@Utilitaires.Afficher(ViewBag.actualites[compteurActualites].ResumeCourt, "Aucun contenu")</p>
+            <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Lire plus ...</a></p>
+        </div>
+    </div>
+}
+
+
+@{
+    compteurActualites++;
+}
+
+<div class="row m-5">
+    @for (int i = 0; i < 2; i++)
+    {
+
+        @if (compteurActualites < ViewBag.actualites.Count)
+
+        {
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+
+                        <h3 class="mb-0">@Utilitaires.Afficher(ViewBag.actualites[compteurActualites].Titre, "Inconnu")</h3>
+                        <div class="mb-1 text-muted">
+
+                            @ViewBag.actualites[compteurActualites].Date.ToString("MMM yyy")
+
+                        </div>
+                        <p class="card-text mb-auto">@Utilitaires.Afficher(ViewBag.actualites[compteurActualites].ResumeCourt, "Aucun contenu")</p>
+                        <a href="#" class="stretched-link">Lire plus</a>
+                    </div>
+                    <div class="w-25 m-2 d-none d-lg-block">
+                        <img class="img-fluid rounded" src="images/mario.png" alt="Champignon">
+                    </div>
+                </div>
+            </div>
+        }
+
+        compteurActualites++;
+    }
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-8 blog-main">
+
+        @for (int i = 0; i < 7; i++)
+        {
+            if (compteurActualites < ViewBag.actualites.Count)
+            {
+                <div class="blog-post">
+                    <h2 class="blog-post-title">@Utilitaires.Afficher(ViewBag.actualites[compteurActualites].Titre, "Sans titre")</h2>
+                    <p class="blog-post-meta">@ViewBag.actualites[compteurActualites].Date.ToString("dd MMMM yyyy") de <a href="#">Christhophe</a></p>
+
+                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <ul>
+                        <li>Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</li>
+                        <li>Donec id elit non mi porta gravida at eget metus.</li>
+                        <li>Nulla vitae elit libero, a pharetra augue.</li>
+                    </ul>
+                    <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+                    <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
+                </div><!-- /.blog-post -->
+            }
+            compteurActualites++;
+          
+        }
+
+  </div>
+</div><!-- /.row -->
