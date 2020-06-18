@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using PickAndPlay.Migrations;
 using PickAndPlay.Models;
 
 namespace PickAndPlay.Controllers
@@ -94,18 +96,41 @@ namespace PickAndPlay.Controllers
             return View(magasin);
         }
 
-        public ActionResult Location(int? jeu) 
+        public ActionResult Location(int? id) 
         {
-            if (!jeu.HasValue)
+            if (!id.HasValue)
             {
-                return Redirect("/");
+                return NotFound();
             }
 
-            string userId = User.Identity.GetUserId();
+            Jeu jeu = _context.Jeux.Where(j =>j.Id == id).FirstOrDefault();
 
-           
+            if(jeu == null)
+            {
+                return NotFound();
+            }
 
-            return Redirect("/Home/Jeu?id="  + jeu);
+            if (!jeu.Disponible.HasValue || !jeu.Disponible.Value)
+            {
+                return NotFound();
+            }
+
+            string idUtilisateur = User.Identity.GetUserId();
+
+            var location = new Location() { IdUtilisateur = idUtilisateur,
+                IdJeu = id,
+                DateHeureLocation = DateTime.Now,
+                DateRestitutionPrevue = (DateTime.Now + TimeSpan.FromDays(10)).Date,
+                Prix = jeu.PrixLocation
+               };
+
+            jeu.Disponible = false;
+
+            _context.Attach(jeu).State = EntityState.Modified;
+            _context.Locations.Add(location);
+            _context.SaveChanges();
+
+            return Redirect("/Home/Jeu?id="  + id);
         }
 
         public ActionResult Actualites()

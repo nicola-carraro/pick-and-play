@@ -100,14 +100,14 @@
 
                 </p>
 
-                <form class="form-inline" asp-controller="Home" asp-action="Reserver" method="get">
+                <form class="form-inline" asp-controller="Home" asp-action="Location" method="get">
 
-                    @if (Model.Disponible.GetValueOrDefault())
+                    @if (Model.Disponible.GetValueOrDefault() && Model.PrixLocation != null)
                     {
 
                         <a class="text-success" href="#"> Disponible à la location</a>
 
-                        <input type="hidden" name="jeu" value="@Model.Id" />
+                        <input type="hidden" name="id" value="@Model.Id" />
 
                         <input class="ml-4 btn btn-success"
                                type="submit"
