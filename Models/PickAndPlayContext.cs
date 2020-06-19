@@ -191,6 +191,16 @@ namespace PickAndPlay.Models
                     .HasConstraintName("FK_NoteJeu_Jeu");
             });
 
+            modelBuilder.Entity<Jeu>(entity =>
+            {
+                entity.HasOne(d => d.EditeurNavigation)
+                      .WithMany(d => d.Jeux)
+                      .HasForeignKey(d => d.IdEditeur)
+                      .OnDelete(DeleteBehavior.ClientSetNull)
+                      .HasConstraintName("FK_Jeu_Editeur");
+                
+            });
+
             OnModelCreatingPartial(modelBuilder);
         }
 

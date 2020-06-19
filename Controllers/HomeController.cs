@@ -57,7 +57,9 @@ namespace PickAndPlay.Controllers
                                    .ThenInclude(ji => ji.Image)
                                    .Include(j => j.JeuxGenres)
                                    .ThenInclude(jg => jg.Genre)
+                                   .Include(j => j.EditeurNavigation)
                                    .FirstOrDefault();
+                                   
             if (jeu == null)
             {
                 return NotFound();

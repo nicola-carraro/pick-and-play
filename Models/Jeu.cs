@@ -18,6 +18,12 @@ namespace PickAndPlay.Models
         [Key]
         public int Id { get; set; }
 
+        public int? IdEditeur { get; set; }
+
+        [ForeignKey(nameof(IdEditeur))]
+        [InverseProperty(nameof(Models.Editeur.Jeux))]
+        public Editeur EditeurNavigation { get; set; }
+
         [StringLength(50)]
         public string Nom { get; set; }
 

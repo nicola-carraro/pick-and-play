@@ -7,8 +7,10 @@ namespace PickAndPlay.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Column(TypeName = "decimal(18, 0)")]
         public decimal Note { get; set; }
+
         public int IdConsole { get; set; }
 
         [ForeignKey(nameof(Id))]

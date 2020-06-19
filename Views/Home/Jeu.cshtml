@@ -40,8 +40,8 @@
                 @Model.Nom
             </h4>
             <p>
-                <strong>Éditeur : </strong><a href="@Model.LinkEditeur">
-                    @Utilitaires.Afficher(Model.Editeur, "Inconnu")
+                <strong>Éditeur : </strong><a href="@Model.EditeurNavigation.Link">
+                    @Utilitaires.Afficher(Model.EditeurNavigation.Nom, "Inconnu")
                 </a>
             </p>
             <p>
