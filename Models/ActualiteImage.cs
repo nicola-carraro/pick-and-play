@@ -13,8 +13,8 @@ namespace PickAndPlay.Models
         public int IdImage { get; set; }
 
         [ForeignKey(nameof(IdActualite))]
-        [InverseProperty(nameof(Actualite.ActualiteImage))]
-        public Actualite ActualiteNavigation { get; set; }
+        [InverseProperty(nameof(Models.Actualite.ActualitesImages))]
+        public Actualite Actualite { get; set; }
 
 
         [ForeignKey(nameof(IdImage))]

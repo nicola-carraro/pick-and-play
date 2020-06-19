@@ -46,8 +46,8 @@ namespace PickAndPlay.Models
             {
                 entity.HasKey(e => new { e.IdActualite, e.IdImage });
 
-                entity.HasOne(d => d.ActualiteNavigation)
-                      .WithMany(p => p.ActualiteImage)
+                entity.HasOne(d => d.Actualite)
+                      .WithMany(p => p.ActualitesImages)
                       .HasForeignKey(d => d.IdActualite)
                       .OnDelete(DeleteBehavior.ClientSetNull)
                       .HasConstraintName("FK_ActualiteImage_Actualite");

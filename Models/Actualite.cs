@@ -18,8 +18,8 @@ namespace PickAndPlay.Models
         public string ResumeLong { get; set; }
         public string Contenu { get; set; }
 
-        [InverseProperty("ActualiteNavigation")]
-        public virtual ICollection<ActualiteImage> ActualiteImage { get; set; }
+        [InverseProperty(nameof(ActualiteImage.Actualite))]
+        public virtual ICollection<ActualiteImage> ActualitesImages{ get; set; }
 
         [NotMapped]
         public List<Image> Images
@@ -28,9 +28,9 @@ namespace PickAndPlay.Models
             {
                 List<Image> images = new List<Image>();
 
-                if (ActualiteImage != null)
+                if (ActualitesImages != null)
                 {
-                    foreach (var ai in ActualiteImage)
+                    foreach (var ai in ActualitesImages)
                     {
                         if (ai != null && ai.Image != null)
                         {

@@ -140,7 +140,7 @@ namespace PickAndPlay.Controllers
             List<Actualite> actualites = _context.Actualites
                                                  .OrderByDescending(a => a.Date)
                                                  .Take(10)
-                                                 .Include(a => a.ActualiteImage)
+                                                 .Include(a => a.ActualitesImages)
                                                  .ThenInclude(ai => ai.Image)
                                                  .ToList();
 
