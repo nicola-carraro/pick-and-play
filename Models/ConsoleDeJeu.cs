@@ -10,7 +10,7 @@ namespace PickAndPlay.Models
     {
         public ConsoleDeJeu()
         {
-            JeuConsoleDeJeu = new HashSet<JeuConsoleDeJeu>();
+            JeuxConsolesDeJeu = new HashSet<JeuConsoleDeJeu>();
         }
 
         [Key]
@@ -25,13 +25,13 @@ namespace PickAndPlay.Models
         [Column(TypeName = "date")]
         public DateTime? DateDeSortie { get; set; } 
 
-        [InverseProperty("ConsoleDeJeuNavigation")]
+        [InverseProperty(nameof(Models.ConsoleJeu.ConsoleDeJeu))]
         public virtual ConsoleJeu ConsoleJeu { get; set; }
-        [InverseProperty("ConsoleDeJeuNavigation")]
-        public virtual ICollection<JeuConsoleDeJeu> JeuConsoleDeJeu { get; set; }
+        [InverseProperty(nameof(JeuConsoleDeJeu.ConsoleDeJeu))]
+        public virtual ICollection<JeuConsoleDeJeu> JeuxConsolesDeJeu { get; set; }
 
         [ForeignKey(nameof(IdImage))]
        
-        public virtual Image ImageNavigation { get; set; }
+        public virtual Image Image { get; set; }
     }
 }

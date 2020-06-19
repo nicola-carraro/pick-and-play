@@ -70,18 +70,18 @@
             </p>
             <p>
                 <strong>Genre : </strong>
-                @if (Model.JeuGenre != null)
+                @if (Model.JeuxGenres != null)
                 {
-                    foreach (var jg in Model.JeuGenre)
+                    foreach (var jg in Model.JeuxGenres)
 
                     {
 
             <a href="#">
-                @jg.GenreNavigation.Libelle
+                @jg.Genre.Libelle
                 
                 @if (
-                Model.JeuGenre.ToList().IndexOf(jg) !=
-         Model.JeuGenre.Count - 1)
+                Model.JeuxGenres.ToList().IndexOf(jg) !=
+         Model.JeuxGenres.Count - 1)
                 {
                     <span>, </span>
                 }

@@ -27,6 +27,8 @@
     <Compile Remove="Migrations\20200618145633_Genre.Designer.cs" />
     <Compile Remove="Migrations\20200618145738_Genre.cs" />
     <Compile Remove="Migrations\20200618145738_Genre.Designer.cs" />
+    <Compile Remove="Migrations\20200619074130_IDJeuNavigation.cs" />
+    <Compile Remove="Migrations\20200619074130_IDJeuNavigation.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -17,8 +17,8 @@ namespace PickAndPlay.Models
         public string Libelle { get; set; }
 
 
-        [InverseProperty("GenreNavigation")]
-        public virtual ICollection<JeuGenre> JeuGenre { get; set; }
+        [InverseProperty(nameof(JeuGenre.Genre))]
+        public virtual ICollection<JeuGenre> JeuxGenres { get; set; }
 
     }
 }

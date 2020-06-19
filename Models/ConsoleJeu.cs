@@ -14,8 +14,8 @@ namespace PickAndPlay.Models
         public int IdConsole { get; set; }
 
         [ForeignKey(nameof(Id))]
-        [InverseProperty(nameof(ConsoleDeJeu.ConsoleJeu))]
-        public virtual ConsoleDeJeu ConsoleDeJeuNavigation { get; set; }
+        [InverseProperty(nameof(Models.ConsoleDeJeu.ConsoleJeu))]
+        public virtual ConsoleDeJeu ConsoleDeJeu { get; set; }
 
 
       

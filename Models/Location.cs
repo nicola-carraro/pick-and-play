@@ -31,8 +31,8 @@ namespace PickAndPlay.Models
         public decimal? Penalite { get; set; }
 
         [ForeignKey(nameof(IdJeu))]
-        [InverseProperty(nameof(Jeu.Locations))]
-        public virtual Jeu JeuNavigation{get; set;}
+        [InverseProperty(nameof(Models.Jeu.Locations))]
+        public virtual Jeu Jeu{get; set;}
 
     }
 }

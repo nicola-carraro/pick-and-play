@@ -11,8 +11,8 @@ namespace PickAndPlay.Models
     {
         public Jeu()
         {
-            JeuConsoleDeJeu = new HashSet<JeuConsoleDeJeu>();
-            JeuImage = new HashSet<JeuImage>();
+            JeuxConsolesDeJeu = new HashSet<JeuConsoleDeJeu>();
+            JeuxImages = new HashSet<JeuImage>();
         }
 
         [Key]
@@ -39,22 +39,22 @@ namespace PickAndPlay.Models
         public decimal? PrixAchat { get; set; }
 
 
-        [InverseProperty("JeuNavigation")]
-        public virtual ICollection<NoteJeu> NoteJeu { get; set; }
+        [InverseProperty(nameof(NoteJeu.Jeu))]
+        public virtual ICollection<NoteJeu> NotesJeux { get; set; }
 
-        [InverseProperty("JeuNavigation")]
+        [InverseProperty(nameof(Location.Jeu))]
         public virtual ICollection<Location> Locations { get; set; }
 
 
-        [InverseProperty("IdJeuNavigation")]
-        public virtual ICollection<JeuConsoleDeJeu> JeuConsoleDeJeu { get; set; }
+        [InverseProperty(nameof(JeuConsoleDeJeu.Jeu))]
+        public virtual ICollection<JeuConsoleDeJeu> JeuxConsolesDeJeu { get; set; }
 
-        [InverseProperty("IdJeuNavigation")]
-        public virtual ICollection<JeuImage> JeuImage { get; set; }
+        [InverseProperty(nameof(JeuImage.Jeu))]
+        public virtual ICollection<JeuImage> JeuxImages { get; set; }
 
 
-        [InverseProperty("JeuNavigation")]
-        public virtual ICollection<JeuGenre> JeuGenre { get; set; }
+        [InverseProperty(nameof(JeuGenre.Jeu))]
+        public virtual ICollection<JeuGenre> JeuxGenres { get; set; }
 
 
         [NotMapped()]
@@ -62,7 +62,7 @@ namespace PickAndPlay.Models
         {
             get
             {
-                if (JeuImage == null)
+                if (JeuxImages == null)
 
                 {
                     return null;
@@ -70,9 +70,9 @@ namespace PickAndPlay.Models
 
                 else
                 {
-                    return JeuImage.Where(ji => ji.ImagePrincipale)
+                    return JeuxImages.Where(ji => ji.ImagePrincipale)
                                    .FirstOrDefault()
-                                   .ImageNavigation;
+                                   .Image;
                 }
 
 
@@ -86,7 +86,7 @@ namespace PickAndPlay.Models
         {
             get
             {
-                if (JeuImage == null)
+                if (JeuxImages == null)
 
                 {
                     return null;
@@ -94,12 +94,12 @@ namespace PickAndPlay.Models
 
                 else
                 {
-                    var jeuImage = JeuImage.Where(ji => ji.ImageNavigation.Largeur >= 1000)
+                    var jeuImage = JeuxImages.Where(ji => ji.Image.Largeur >= 1000)
                                     .FirstOrDefault();
 
                     return jeuImage == null ? 
                             null : 
-                            jeuImage.ImageNavigation;
+                            jeuImage.Image;
                 }
 
             }
@@ -115,9 +115,9 @@ namespace PickAndPlay.Models
 
                 List<Image> images = new List<Image>();
 
-                if (JeuImage != null)
+                if (JeuxImages != null)
                 {
-                    JeuImage.ToList().ForEach(ji => images.Add(ji.ImageNavigation));
+                    JeuxImages.ToList().ForEach(ji => images.Add(ji.Image));
                 }
 
                 return images;
@@ -133,9 +133,9 @@ namespace PickAndPlay.Models
 
                 List<ConsoleDeJeu> consoles = new List<ConsoleDeJeu>();
 
-                if (JeuImage != null)
+                if (JeuxImages != null)
                 {
-                    JeuConsoleDeJeu.ToList().ForEach(jc => consoles.Add(jc.ConsoleDeJeuNavigation));
+                    JeuxConsolesDeJeu.ToList().ForEach(jc => consoles.Add(jc.ConsoleDeJeu));
                 }
 
                 return consoles;
@@ -149,7 +149,7 @@ namespace PickAndPlay.Models
         public decimal? NoteMoyenne()
         {
 
-            if (NoteJeu == null || NoteJeu.Count == 0)
+            if (NotesJeux == null || NotesJeux.Count == 0)
 
             {
                 return null;
@@ -158,12 +158,12 @@ namespace PickAndPlay.Models
 
             decimal resultat = 0;
 
-            foreach (var note in NoteJeu)
+            foreach (var note in NotesJeux)
             {
                 resultat += note.Note;
             };
 
-            return resultat / NoteJeu.Count;
+            return resultat / NotesJeux.Count;
         }
 
     }

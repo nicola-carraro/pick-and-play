@@ -13,10 +13,10 @@ namespace PickAndPlay.Models
         public int IdImage { get; set; }
 
         [ForeignKey(nameof(IdImage))]
-        [InverseProperty(nameof(Image.MagasinImage))]
-        public virtual Image ImageNavigation { get; set; }
+        [InverseProperty(nameof(Models.Image.MagasinsImages))]
+        public virtual Image Image { get; set; }
         [ForeignKey(nameof(IdMagasin))]
-        [InverseProperty(nameof(Magasin.MagasinImage))]
-        public virtual Magasin MagasinNavigation { get; set; }
+        [InverseProperty(nameof(Models.Magasin.MagasinsImages))]
+        public virtual Magasin Magasin { get; set; }
     }
 }

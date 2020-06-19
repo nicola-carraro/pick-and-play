@@ -53,8 +53,8 @@ namespace PickAndPlay.Models
                       .HasConstraintName("FK_ActualiteImage_Actualite");
 
 
-                entity.HasOne(d => d.ImageNavigation)
-                      .WithMany(p => p.ActualiteImage)
+                entity.HasOne(d => d.Image)
+                      .WithMany(p => p.ActualitesImages)
                       .HasForeignKey(d => d.IdImage)
                       .OnDelete(DeleteBehavior.ClientSetNull)
                       .HasConstraintName("FK_ActualiteImage_Image");
@@ -73,7 +73,7 @@ namespace PickAndPlay.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne(d => d.ConsoleDeJeuNavigation)
+                entity.HasOne(d => d.ConsoleDeJeu)
                     .WithOne(p => p.ConsoleJeu)
                     .HasForeignKey<ConsoleJeu>(d => d.Id)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -84,14 +84,14 @@ namespace PickAndPlay.Models
             {
                 entity.HasKey(e => new { e.IdConsoleDeJeu, e.IdJeu });
 
-                entity.HasOne(d => d.ConsoleDeJeuNavigation)
-                    .WithMany(p => p.JeuConsoleDeJeu)
+                entity.HasOne(d => d.ConsoleDeJeu)
+                    .WithMany(p => p.JeuxConsolesDeJeu)
                     .HasForeignKey(d => d.IdConsoleDeJeu)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_JeuConsoleDeJeu_ConsoleDeJeu");
 
-                entity.HasOne(d => d.IdJeuNavigation)
-                    .WithMany(p => p.JeuConsoleDeJeu)
+                entity.HasOne(d => d.Jeu)
+                    .WithMany(p => p.JeuxConsolesDeJeu)
                     .HasForeignKey(d => d.IdJeu)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_JeuConsoleDeJeu_Jeu");
@@ -101,14 +101,14 @@ namespace PickAndPlay.Models
             {
                 entity.HasKey(e => new { e.IdJeu, e.IdImage });
 
-                entity.HasOne(d => d.ImageNavigation)
-                    .WithMany(p => p.JeuImage)
+                entity.HasOne(d => d.Image)
+                    .WithMany(p => p.JeuxImages)
                     .HasForeignKey(d => d.IdImage)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_JeuImage_Image");
 
-                entity.HasOne(d => d.IdJeuNavigation)
-                    .WithMany(p => p.JeuImage)
+                entity.HasOne(d => d.Jeu)
+                    .WithMany(p => p.JeuxImages)
                     .HasForeignKey(d => d.IdJeu)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_JeuImage_Jeu");
@@ -116,7 +116,7 @@ namespace PickAndPlay.Models
 
             modelBuilder.Entity<ConsoleDeJeu>(entity =>
             {
-                entity.HasOne(d => d.ImageNavigation)
+                entity.HasOne(d => d.Image)
                       .WithOne(p => p.ConsoleNavigation)
                       .HasForeignKey<ConsoleDeJeu>(d => d.IdImage)
                       .HasConstraintName("FK_ConsoleDeJeu_Image");
@@ -135,7 +135,7 @@ namespace PickAndPlay.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne(e => e.JeuNavigation)
+                entity.HasOne(e => e.Jeu)
                     .WithMany(prop => prop.Locations)
                     .HasForeignKey(e => e.IdJeu)
                      .OnDelete(DeleteBehavior.ClientSetNull)
@@ -153,14 +153,14 @@ namespace PickAndPlay.Models
             {
                 entity.HasKey(e => new { e.IdJeu, e.IdGenre });
 
-                entity.HasOne(d => d.JeuNavigation)
-                    .WithMany(p => p.JeuGenre)
+                entity.HasOne(d => d.Jeu)
+                    .WithMany(p => p.JeuxGenres)
                     .HasForeignKey(d => d.IdJeu)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_JeuGenre_Jeu");
 
-                entity.HasOne(d => d.GenreNavigation)
-                    .WithMany(p => p.JeuGenre)
+                entity.HasOne(d => d.Genre)
+                    .WithMany(p => p.JeuxGenres)
                     .HasForeignKey(d => d.IdGenre)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_JeuGenre_Genre");
@@ -170,14 +170,14 @@ namespace PickAndPlay.Models
             {
                 entity.HasKey(e => new { e.IdMagasin, e.IdImage });
 
-                entity.HasOne(d => d.ImageNavigation)
-                    .WithMany(p => p.MagasinImage)
+                entity.HasOne(d => d.Image)
+                    .WithMany(p => p.MagasinsImages)
                     .HasForeignKey(d => d.IdImage)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MagasinImage_Image");
 
-                entity.HasOne(d => d.MagasinNavigation)
-                    .WithMany(p => p.MagasinImage)
+                entity.HasOne(d => d.Magasin)
+                    .WithMany(p => p.MagasinsImages)
                     .HasForeignKey(d => d.IdMagasin)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MagasinImage_Magasin");
@@ -187,8 +187,8 @@ namespace PickAndPlay.Models
             {
                 entity.Property(e => e.Id).ValueGeneratedOnAdd();
 
-                entity.HasOne(d => d.JeuNavigation)
-                    .WithMany(p => p.NoteJeu)
+                entity.HasOne(d => d.Jeu)
+                    .WithMany(p => p.NotesJeux)
                     .HasForeignKey(d => d.IdJeu)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_NoteJeu_Jeu");

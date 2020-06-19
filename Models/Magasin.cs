@@ -9,7 +9,7 @@ namespace PickAndPlay.Models
     {
         public Magasin()
         {
-            MagasinImage = new HashSet<MagasinImage>();
+            MagasinsImages = new HashSet<MagasinImage>();
         }
 
         [Key]
@@ -23,8 +23,8 @@ namespace PickAndPlay.Models
         public Adresse AdresseNavigation { get; set; }
 
 
-        [InverseProperty("MagasinNavigation")]
-        public virtual ICollection<MagasinImage> MagasinImage { get; set; }
+        [InverseProperty(nameof(MagasinImage.Magasin))]
+        public virtual ICollection<MagasinImage> MagasinsImages { get; set; }
 
         [NotMapped]
         public List<Image> Images 
@@ -33,13 +33,13 @@ namespace PickAndPlay.Models
             {
                 List<Image> images = new List<Image>();
 
-                if (MagasinImage != null)
+                if (MagasinsImages != null)
                 {
-                    foreach (var mi in MagasinImage)
+                    foreach (var mi in MagasinsImages)
                     {
-                        if (mi.ImageNavigation != null)
+                        if (mi.Image != null)
                         {
-                            images.Add(mi.ImageNavigation); 
+                            images.Add(mi.Image); 
                         }
                     }
                 }

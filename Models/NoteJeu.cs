@@ -14,7 +14,7 @@ namespace PickAndPlay.Models
         public decimal Note { get; set; }
 
         [ForeignKey(nameof(IdJeu))]
-        [InverseProperty(nameof(Jeu.NoteJeu))]
-        public virtual Jeu JeuNavigation { get; set; }
+        [InverseProperty(nameof(Models.Jeu.NotesJeux))]
+        public virtual Jeu Jeu { get; set; }
     }
 }

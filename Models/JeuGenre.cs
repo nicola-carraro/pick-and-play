@@ -19,12 +19,12 @@ namespace PickAndPlay.Models
 
 
         [ForeignKey(nameof(IdGenre))]
-        [InverseProperty(nameof(Genre.JeuGenre))]
-        public Genre GenreNavigation { get; set; }
+        [InverseProperty(nameof(Models.Genre.JeuxGenres))]
+        public Genre Genre { get; set; }
 
 
         [ForeignKey(nameof(IdJeu))]
-        [InverseProperty(nameof(Jeu.JeuGenre))]
-        public Jeu JeuNavigation { get; set; }
+        [InverseProperty(nameof(Models.Jeu.JeuxGenres))]
+        public Jeu Jeu { get; set; }
     }
 }

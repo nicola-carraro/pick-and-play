@@ -27,9 +27,9 @@ namespace PickAndPlay.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Jeu> jeux = _context.Jeux.Include(j => j.NoteJeu)
-                                                 .Include(j => j.JeuImage)
-                                                 .ThenInclude(ji => ji.ImageNavigation);
+            IEnumerable<Jeu> jeux = _context.Jeux.Include(j => j.NotesJeux)
+                                                 .Include(j => j.JeuxImages)
+                                                 .ThenInclude(ji => ji.Image);
 
             List<Jeu> preferes = jeux.OrderByDescending(j => j.NoteMoyenne())
                                      .Take(3)
@@ -52,13 +52,13 @@ namespace PickAndPlay.Controllers
         public ActionResult Jeu(int? id)
         {
             var jeu = _context.Jeux.Where(j => j.Id == id)
-                                   .Include(j => j.NoteJeu)
-                                   .Include(j => j.JeuConsoleDeJeu)
-                                   .ThenInclude(cj => cj.ConsoleDeJeuNavigation)
-                                   .Include(j => j.JeuImage)
-                                   .ThenInclude(ji => ji.ImageNavigation)
-                                   .Include(j => j.JeuGenre)
-                                   .ThenInclude(jg => jg.GenreNavigation)
+                                   .Include(j => j.NotesJeux)
+                                   .Include(j => j.JeuxConsolesDeJeu)
+                                   .ThenInclude(cj => cj.ConsoleDeJeu)
+                                   .Include(j => j.JeuxImages)
+                                   .ThenInclude(ji => ji.Image)
+                                   .Include(j => j.JeuxGenres)
+                                   .ThenInclude(jg => jg.Genre)
                                    .FirstOrDefault();
             if (jeu == null)
             {
@@ -72,7 +72,7 @@ namespace PickAndPlay.Controllers
         public ActionResult ConsoleDeJeu(int? id)
         {
             var console = _context.ConsolesDeJeu.Where(c => c.Id == id)
-                                                .Include(c => c.ImageNavigation)
+                                                .Include(c => c.Image)
                                                 .FirstOrDefault();
             if (console == null)
             {
@@ -86,8 +86,8 @@ namespace PickAndPlay.Controllers
         {
             var magasin = _context.Magasins.Where(m => m.Id == id)
                                            .Include(m => m.AdresseNavigation)
-                                           .Include(m => m.MagasinImage)
-                                           .ThenInclude(mi => mi.ImageNavigation)
+                                           .Include(m => m.MagasinsImages)
+                                           .ThenInclude(mi => mi.Image)
                                            .FirstOrDefault();
 
             if (magasin == null)
@@ -141,7 +141,7 @@ namespace PickAndPlay.Controllers
                                                  .OrderByDescending(a => a.Date)
                                                  .Take(10)
                                                  .Include(a => a.ActualiteImage)
-                                                 .ThenInclude(ai => ai.ImageNavigation)
+                                                 .ThenInclude(ai => ai.Image)
                                                  .ToList();
 
             Console.WriteLine(actualites[0].Images);

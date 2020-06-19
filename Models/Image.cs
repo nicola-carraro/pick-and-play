@@ -11,8 +11,8 @@ namespace PickAndPlay.Models
     {
         public Image()
         {
-            JeuImage = new HashSet<JeuImage>();
-            MagasinImage = new HashSet<MagasinImage>();
+            JeuxImages = new HashSet<JeuImage>();
+            MagasinsImages = new HashSet<MagasinImage>();
         }
 
         [Key]
@@ -29,18 +29,18 @@ namespace PickAndPlay.Models
         
         public int? Hauteur { get; set; }
 
-        [InverseProperty("ImageNavigation")]
-        public virtual ICollection<JeuImage> JeuImage { get; set; }
+        [InverseProperty(nameof(JeuImage.Image))]
+        public virtual ICollection<JeuImage> JeuxImages { get; set; }
 
-        [InverseProperty("ImageNavigation")]
-        public virtual ICollection<MagasinImage> MagasinImage { get; set; }
+        [InverseProperty(nameof(MagasinImage.Image))]
+        public virtual ICollection<MagasinImage> MagasinsImages { get; set; }
 
 
-        [InverseProperty("ImageNavigation")]
+        [InverseProperty(nameof(ConsoleDeJeu.Image))]
         public virtual ConsoleDeJeu ConsoleNavigation { get; set; }
 
 
-        [InverseProperty("ImageNavigation")]
-        public virtual ICollection<ActualiteImage> ActualiteImage { get; set; }
+        [InverseProperty(nameof(ActualiteImage.Image))]
+        public virtual ICollection<ActualiteImage> ActualitesImages { get; set; }
     }
 }

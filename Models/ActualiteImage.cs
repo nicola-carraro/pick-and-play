@@ -18,7 +18,7 @@ namespace PickAndPlay.Models
 
 
         [ForeignKey(nameof(IdImage))]
-        [InverseProperty(nameof(Image.ActualiteImage))]
-        public Image ImageNavigation { get; set; }
+        [InverseProperty(nameof(Models.Image.ActualitesImages))]
+        public Image Image { get; set; }
     }
 }
