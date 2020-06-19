@@ -193,7 +193,7 @@ namespace PickAndPlay.Models
 
             modelBuilder.Entity<Jeu>(entity =>
             {
-                entity.HasOne(d => d.EditeurNavigation)
+                entity.HasOne(d => d.Editeur)
                       .WithMany(d => d.Jeux)
                       .HasForeignKey(d => d.IdEditeur)
                       .OnDelete(DeleteBehavior.ClientSetNull)

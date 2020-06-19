@@ -16,7 +16,7 @@ namespace PickAndPlay.Models
         [StringLength(50)]
         public string Nom { get; set; }
 
-        [InverseProperty(nameof(Jeu.EditeurNavigation))]
+        [InverseProperty(nameof(Jeu.Editeur))]
         public ICollection<Jeu> Jeux { get; set; }
 
     }
