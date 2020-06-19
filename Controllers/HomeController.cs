@@ -31,7 +31,7 @@ namespace PickAndPlay.Controllers
                                                  .Include(j => j.JeuImage)
                                                  .ThenInclude(ji => ji.ImageNavigation);
 
-            List<Jeu> preferes = jeux.OrderBy(j => j.NoteMoyenne())
+            List<Jeu> preferes = jeux.OrderByDescending(j => j.NoteMoyenne())
                                      .Take(3)
                                      .ToList();
 
