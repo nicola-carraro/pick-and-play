@@ -15,23 +15,28 @@ namespace PickAndPlay.Models
 
         [Key]
         public int Id { get; set; }
+
         [StringLength(50)]
         public string Model { get; set; }
+
         [StringLength(50)]
         public string Marque { get; set; }
+
         public int? IdImage { get; set; }
+
         public string Description { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime? DateDeSortie { get; set; } 
+        public DateTime? DateDeSortie { get; set; }
+
 
         [InverseProperty(nameof(Models.ConsoleJeu.ConsoleDeJeu))]
         public virtual ConsoleJeu ConsoleJeu { get; set; }
+
         [InverseProperty(nameof(JeuConsoleDeJeu.ConsoleDeJeu))]
         public virtual ICollection<JeuConsoleDeJeu> JeuxConsolesDeJeu { get; set; }
 
         [ForeignKey(nameof(IdImage))]
-       
         public virtual Image Image { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace PickAndPlay.Models
 
         [Key]
         public int Id { get; set; }
+
         [StringLength(50)]
         public string Nom { get; set; }
 
@@ -30,11 +31,15 @@ namespace PickAndPlay.Models
 
         [StringLength(50)]
         public string LinkEditeur { get; set; }
+
         [Column("PEGI")]
         public byte? Pegi { get; set; }
+
         public bool? Disponible { get; set; }
+
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? PrixLocation { get; set; }
+
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? PrixAchat { get; set; }
 
@@ -42,9 +47,9 @@ namespace PickAndPlay.Models
         [InverseProperty(nameof(NoteJeu.Jeu))]
         public virtual ICollection<NoteJeu> NotesJeux { get; set; }
 
+
         [InverseProperty(nameof(Location.Jeu))]
         public virtual ICollection<Location> Locations { get; set; }
-
 
         [InverseProperty(nameof(JeuConsoleDeJeu.Jeu))]
         public virtual ICollection<JeuConsoleDeJeu> JeuxConsolesDeJeu { get; set; }
@@ -52,10 +57,8 @@ namespace PickAndPlay.Models
         [InverseProperty(nameof(JeuImage.Jeu))]
         public virtual ICollection<JeuImage> JeuxImages { get; set; }
 
-
         [InverseProperty(nameof(JeuGenre.Jeu))]
         public virtual ICollection<JeuGenre> JeuxGenres { get; set; }
-
 
         [NotMapped()]
         public virtual Image ImagePrincipale
@@ -63,7 +66,6 @@ namespace PickAndPlay.Models
             get
             {
                 if (JeuxImages == null)
-
                 {
                     return null;
                 }
@@ -74,11 +76,7 @@ namespace PickAndPlay.Models
                                    .FirstOrDefault()
                                    .Image;
                 }
-
-
             }
-            set { }
-       
         }
 
         [NotMapped()]
@@ -97,15 +95,12 @@ namespace PickAndPlay.Models
                     var jeuImage = JeuxImages.Where(ji => ji.Image.Largeur >= 1000)
                                     .FirstOrDefault();
 
-                    return jeuImage == null ? 
-                            null : 
+                    return jeuImage == null ?
+                            null :
                             jeuImage.Image;
                 }
-
             }
-
         }
-
 
         [NotMapped()]
         public virtual List<Image> Images
@@ -124,13 +119,11 @@ namespace PickAndPlay.Models
             }
         }
 
-
         [NotMapped()]
         public List<ConsoleDeJeu> Consoles
         {
             get
             {
-
                 List<ConsoleDeJeu> consoles = new List<ConsoleDeJeu>();
 
                 if (JeuxImages != null)
@@ -140,21 +133,14 @@ namespace PickAndPlay.Models
 
                 return consoles;
             }
-
         }
 
-
-
- 
         public decimal? NoteMoyenne()
         {
-
             if (NotesJeux == null || NotesJeux.Count == 0)
-
             {
                 return null;
             }
-
 
             decimal resultat = 0;
 
@@ -165,6 +151,5 @@ namespace PickAndPlay.Models
 
             return resultat / NotesJeux.Count;
         }
-
     }
 }

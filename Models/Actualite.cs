@@ -9,12 +9,17 @@ namespace PickAndPlay.Models
     {
         [Key]
         public int Id { get; set; }
+
         [StringLength(50)]
         public string Titre { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime? Date { get; set; }
+
         public string ResumeCourt { get; set; }
+
         public string ResumeLong { get; set; }
+
         public string Contenu { get; set; }
 
         [InverseProperty(nameof(ActualiteImage.Actualite))]

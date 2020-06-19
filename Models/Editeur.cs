@@ -4,7 +4,6 @@ namespace PickAndPlay.Models
 {
     public class Editeur
     {
-
         [Key]
         public int Id { get; set;  }
 
