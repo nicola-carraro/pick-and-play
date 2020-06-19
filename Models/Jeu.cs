@@ -31,12 +31,7 @@ namespace PickAndPlay.Models
         [Column(TypeName = "date")]
         public DateTime? DateDeSortie { get; set; }
 
-        [StringLength(50)]
-        public string Editeur { get; set; }
-
-
-        [StringLength(50)]
-        public string LinkEditeur { get; set; }
+       
 
         [Column("PEGI")]
         public byte? Pegi { get; set; }
