@@ -1,5 +1,3 @@
-using System;
-
 namespace PickAndPlay.Models
 {
     public class ErrorViewModel
