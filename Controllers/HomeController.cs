@@ -59,7 +59,7 @@ namespace PickAndPlay.Controllers
                                    .ThenInclude(jg => jg.Genre)
                                    .Include(j => j.Editeur)
                                    .FirstOrDefault();
-                                   
+
             if (jeu == null)
             {
                 return NotFound();
@@ -98,7 +98,7 @@ namespace PickAndPlay.Controllers
             return View(magasin);
         }
 
-        public ActionResult Location(int? id) 
+        public ActionResult Location(int? id)
         {
             if (!id.HasValue)
             {

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\JeuController.cs" />
     <Compile Remove="Migrations\20200615121234_Help.cs" />
     <Compile Remove="Migrations\20200615121234_Help.Designer.cs" />
     <Compile Remove="Migrations\20200615121309_InitialCreate.cs" />
