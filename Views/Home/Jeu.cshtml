@@ -78,7 +78,7 @@
 
             <a href="#">
                 @jg.Genre.Libelle
-                
+
                 @if (
                 Model.JeuxGenres.ToList().IndexOf(jg) !=
          Model.JeuxGenres.Count - 1)
@@ -145,8 +145,8 @@
 
             <form class="mt-5">
                 <div class="form-group row">
-                    <label for="note" class="col-sm-3 col-form-label"><strong>Note : </strong></label>
-                    <span id="note" class="mt-2">
+                    <label for="note" class="col-md-6 col-form-label"><strong>Note&nbsp;: </strong></label>
+                    <span id="note" class="col-md-6 mt-2">
 
                         @if (!Model.NoteMoyenne().HasValue)
                         {
