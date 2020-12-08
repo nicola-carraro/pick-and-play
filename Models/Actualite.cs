@@ -36,7 +36,7 @@ namespace PickAndPlay.Models
                 {
                     foreach (var ai in ActualitesImages)
                     {
-                        if (ai != null && ai.Image != null)
+                        if (ai?.Image != null)
                         {
                             images.Add(ai.Image);
                         }

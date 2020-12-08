@@ -33,10 +33,7 @@ namespace PickAndPlay.Migrations
                     Link = table.Column<string>(maxLength: 50, nullable: true),
                     Nom = table.Column<string>(maxLength: 50, nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Editeur", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Editeur", x => x.Id));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

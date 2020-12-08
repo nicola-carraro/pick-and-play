@@ -8,12 +8,10 @@ namespace PickAndPlay
 {
     public static class Utilitaires
     {
-
-        public static string Afficher<T>(Nullable<T> nullable, string defaultString) where T : struct => 
+        public static string Afficher<T>(T? nullable, string defaultString) where T : struct =>
             nullable.HasValue ? nullable.Value.ToString() : defaultString;
 
-
-        public static string Afficher<T>(T reference, string defaultString) where T : class => 
+        public static string Afficher<T>(T reference, string defaultString) where T : class =>
             reference != null ? reference.ToString() : defaultString;
 
         public static string AfficherAnnee(DateTime? date, string defaultString)  =>

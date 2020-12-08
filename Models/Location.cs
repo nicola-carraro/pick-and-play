@@ -32,6 +32,5 @@ namespace PickAndPlay.Models
         [ForeignKey(nameof(IdJeu))]
         [InverseProperty(nameof(Models.Jeu.Locations))]
         public virtual Jeu Jeu{get; set;}
-
     }
 }

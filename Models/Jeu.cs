@@ -28,10 +28,9 @@ namespace PickAndPlay.Models
         public string Nom { get; set; }
 
         public string Description { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime? DateDeSortie { get; set; }
-
-       
 
         [Column("PEGI")]
         public byte? Pegi { get; set; }
@@ -44,10 +43,8 @@ namespace PickAndPlay.Models
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? PrixAchat { get; set; }
 
-
         [InverseProperty(nameof(NoteJeu.Jeu))]
         public virtual ICollection<NoteJeu> NotesJeux { get; set; }
-
 
         [InverseProperty(nameof(Location.Jeu))]
         public virtual ICollection<Location> Locations { get; set; }
@@ -66,17 +63,18 @@ namespace PickAndPlay.Models
         {
             get
             {
-                if (JeuxImages == null)
+                Image resultat = null;
+
+                if (JeuxImages != null)
                 {
-                    return null;
+                    JeuImage jeuImage = JeuxImages.FirstOrDefault(ji => ji.ImagePrincipale);
+                    if (jeuImage != null)
+                    {
+                        resultat = jeuImage.Image;
+                    }
                 }
 
-                else
-                {
-                    return JeuxImages.Where(ji => ji.ImagePrincipale)
-                                   .FirstOrDefault()
-                                   .Image;
-                }
+                return resultat;
             }
         }
 
@@ -90,15 +88,11 @@ namespace PickAndPlay.Models
                 {
                     return null;
                 }
-
                 else
                 {
-                    var jeuImage = JeuxImages.Where(ji => ji.Image.Largeur >= 1000)
-                                    .FirstOrDefault();
+                    var jeuImage = JeuxImages.FirstOrDefault(ji => ji.Image.Largeur >= 1000);
 
-                    return jeuImage == null ?
-                            null :
-                            jeuImage.Image;
+                    return jeuImage?.Image;
                 }
             }
         }
@@ -108,7 +102,6 @@ namespace PickAndPlay.Models
         {
             get
             {
-
                 List<Image> images = new List<Image>();
 
                 if (JeuxImages != null)
@@ -148,7 +141,7 @@ namespace PickAndPlay.Models
             foreach (var note in NotesJeux)
             {
                 resultat += note.Note;
-            };
+            }
 
             return resultat / NotesJeux.Count;
         }

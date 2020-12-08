@@ -23,7 +23,7 @@ namespace PickAndPlay
         {
             services.AddDbContext<PickAndPlayContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("PickAndPlayContextConnection")));
-          
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -56,7 +56,6 @@ namespace PickAndPlay
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-
         }
     }
 }

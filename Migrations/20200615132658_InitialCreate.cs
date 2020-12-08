@@ -14,10 +14,7 @@ namespace PickAndPlay.Migrations
                     IdActualite = table.Column<int>(nullable: false),
                     IdImage = table.Column<int>(nullable: false)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ActualiteImage", x => new { x.IdActualite, x.IdImage });
-                });
+                constraints: table => table.PrimaryKey("PK_ActualiteImage", x => new { x.IdActualite, x.IdImage }));
 
             migrationBuilder.CreateTable(
                 name: "Actualites",
@@ -31,10 +28,7 @@ namespace PickAndPlay.Migrations
                     ResumeLong = table.Column<string>(nullable: true),
                     Contenu = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Actualites", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Actualites", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "Adresses",
@@ -48,10 +42,7 @@ namespace PickAndPlay.Migrations
                     CodePostal = table.Column<string>(fixedLength: true, maxLength: 5, nullable: true),
                     Pays = table.Column<string>(maxLength: 50, nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Adresses", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Adresses", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "ConsolesDeJeu",
@@ -64,10 +55,7 @@ namespace PickAndPlay.Migrations
                     IdImage = table.Column<int>(nullable: true),
                     Description = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ConsolesDeJeu", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_ConsolesDeJeu", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "Image",
@@ -80,10 +68,7 @@ namespace PickAndPlay.Migrations
                     Largeur = table.Column<int>(nullable: true),
                     Hauteur = table.Column<int>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Image", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Image", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "Jeu",
@@ -101,10 +86,7 @@ namespace PickAndPlay.Migrations
                     PrixLocation = table.Column<decimal>(type: "decimal(18, 0)", nullable: true),
                     PrixAchat = table.Column<decimal>(type: "decimal(18, 0)", nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Jeu", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Jeu", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "Magasins",
@@ -116,10 +98,7 @@ namespace PickAndPlay.Migrations
                     Gerent = table.Column<int>(nullable: true),
                     Adresse = table.Column<int>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Magasins", x => x.Id);
-                });
+                constraints: table => table.PrimaryKey("PK_Magasins", x => x.Id));
 
             migrationBuilder.CreateTable(
                 name: "ConsoleJeu",

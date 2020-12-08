@@ -13,21 +13,23 @@ namespace PickAndPlay.Models
 
         [Key]
         public int Id { get; set; }
+
         [StringLength(50)]
         public string Nom { get; set; }
+
         public int? Gerent { get; set; }
+
         public int? Adresse { get; set; }
 
         [ForeignKey(nameof(Adresse))]
         public Adresse AdresseNavigation { get; set; }
 
-
         [InverseProperty(nameof(MagasinImage.Magasin))]
         public virtual ICollection<MagasinImage> MagasinsImages { get; set; }
 
         [NotMapped]
-        public List<Image> Images 
-        { 
+        public List<Image> Images
+        {
             get
             {
                 List<Image> images = new List<Image>();
@@ -38,7 +40,7 @@ namespace PickAndPlay.Models
                     {
                         if (mi.Image != null)
                         {
-                            images.Add(mi.Image); 
+                            images.Add(mi.Image);
                         }
                     }
                 }

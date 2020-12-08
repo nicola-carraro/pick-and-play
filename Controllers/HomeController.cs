@@ -37,15 +37,12 @@ namespace PickAndPlay.Controllers
                                        .Take(3)
                                        .ToList();
 
-
             ViewData["preferes"] = preferes;
 
             ViewData["nouveautes"] = nouveautes;
 
-
             return View();
         }
-
 
         public ActionResult Jeu(int? id)
         {
@@ -67,7 +64,6 @@ namespace PickAndPlay.Controllers
 
             return View(jeu);
         }
-
 
         public ActionResult ConsoleDeJeu(int? id)
         {
@@ -149,10 +145,8 @@ namespace PickAndPlay.Controllers
             return View();
         }
 
-
         public ActionResult Rechercher(string query)
         {
-
             if (string.IsNullOrWhiteSpace(query))
             {
                 HttpContext.Response.Redirect("/");
@@ -177,6 +171,5 @@ namespace PickAndPlay.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }

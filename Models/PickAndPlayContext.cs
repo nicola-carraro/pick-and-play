@@ -12,18 +12,31 @@ namespace PickAndPlay.Models
             : base(options)
         {
         }
+
         public virtual DbSet<Actualite> Actualites { get; set; }
+
         public virtual DbSet<ActualiteImage> ActualiteImage { get; set; }
+
         public virtual DbSet<Adresse> Adresses { get; set; }
+
         public virtual DbSet<ConsoleDeJeu> ConsolesDeJeu { get; set; }
+
         public virtual DbSet<ConsoleJeu> ConsoleJeu { get; set; }
+
         public virtual DbSet<Image> Images { get; set; }
+
         public virtual DbSet<Jeu> Jeux { get; set; }
+
         public virtual DbSet<JeuConsoleDeJeu> JeuConsoleDeJeu { get; set; }
+
         public virtual DbSet<JeuImage> JeuImage { get; set; }
+
         public virtual DbSet<Location> Locations { get; set; }
+
         public virtual DbSet<Magasin> Magasins { get; set; }
+
         public virtual DbSet<MagasinImage> MagasinImage { get; set; }
+
         public virtual DbSet<NoteJeu> NotesJeus { get; set; }
 
         public virtual DbSet<Editeur> Editeur { get; set; }
@@ -32,7 +45,6 @@ namespace PickAndPlay.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 optionsBuilder.UseSqlServer("Server=DI01; Database=PickAndPlay; User=sa; Password=Anassagora85;");
             }
         }
@@ -49,7 +61,6 @@ namespace PickAndPlay.Models
                       .OnDelete(DeleteBehavior.ClientSetNull)
                       .HasConstraintName("FK_ActualiteImage_Actualite");
 
-
                 entity.HasOne(d => d.Image)
                       .WithMany(p => p.ActualitesImages)
                       .HasForeignKey(d => d.IdImage)
@@ -63,8 +74,6 @@ namespace PickAndPlay.Models
 
                 entity.Property(e => e.NumeroDeRue).IsFixedLength();
             });
-
-
 
             modelBuilder.Entity<ConsoleJeu>(entity =>
             {
@@ -139,18 +148,14 @@ namespace PickAndPlay.Models
                     .HasConstraintName("FK_Location_Jeu");
             });
 
-
-            modelBuilder.Entity<Genre>(entity => 
-            { 
-                entity.Property(entity => entity.Id).ValueGeneratedOnAdd();
-            });
-
+            modelBuilder.Entity<Genre>(entity => entity.Property(entity => entity.Id).ValueGeneratedOnAdd());
 
             modelBuilder.Entity<JeuGenre>(entity =>
             {
                 entity.HasKey(e => new { e.IdJeu, e.IdGenre });
 
                 entity.HasOne(d => d.Jeu)
+
                     .WithMany(p => p.JeuxGenres)
                     .HasForeignKey(d => d.IdJeu)
                     .OnDelete(DeleteBehavior.ClientSetNull)
@@ -198,7 +203,6 @@ namespace PickAndPlay.Models
                       .HasForeignKey(d => d.IdEditeur)
                       .OnDelete(DeleteBehavior.ClientSetNull)
                       .HasConstraintName("FK_Jeu_Editeur");
-                
             });
 
             OnModelCreatingPartial(modelBuilder);

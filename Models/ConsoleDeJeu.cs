@@ -28,7 +28,6 @@ namespace PickAndPlay.Models
         [Column(TypeName = "date")]
         public DateTime? DateDeSortie { get; set; }
 
-
         [InverseProperty(nameof(Models.ConsoleJeu.ConsoleDeJeu))]
         public virtual ConsoleJeu ConsoleJeu { get; set; }
 

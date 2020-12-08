@@ -9,7 +9,6 @@ namespace PickAndPlay.Models
         [Key]
         public int Id { get; set; }
 
-
         [StringLength(50)]
         public string Link { get; set; }
 
@@ -18,6 +17,5 @@ namespace PickAndPlay.Models
 
         [InverseProperty(nameof(Jeu.Editeur))]
         public ICollection<Jeu> Jeux { get; set; }
-
     }
 }

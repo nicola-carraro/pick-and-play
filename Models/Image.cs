@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PickAndPlay.Models
 {
-
     [Table("Image")]
     public partial class Image
     {
@@ -20,12 +19,11 @@ namespace PickAndPlay.Models
         [StringLength(50)]
         public string NomFile { get; set; }
 
-
         [StringLength(50)]
         public string Alt { get; set; }
 
         public int? Largeur { get; set; }
-        
+
         public int? Hauteur { get; set; }
 
         [InverseProperty(nameof(JeuImage.Image))]
@@ -34,10 +32,8 @@ namespace PickAndPlay.Models
         [InverseProperty(nameof(MagasinImage.Image))]
         public virtual ICollection<MagasinImage> MagasinsImages { get; set; }
 
-
         [InverseProperty(nameof(ConsoleDeJeu.Image))]
         public virtual ConsoleDeJeu ConsoleNavigation { get; set; }
-
 
         [InverseProperty(nameof(ActualiteImage.Image))]
         public virtual ICollection<ActualiteImage> ActualitesImages { get; set; }
